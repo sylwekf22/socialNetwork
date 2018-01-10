@@ -1,7 +1,8 @@
 package sample;
 
+import databasequeries.AuthorsNodes;
 import javafx.fxml.FXML;
-import sample.config.DatabaseConnectionHandler;
+import config.DatabaseConnectionHandler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,8 +16,9 @@ public class Controller {
 
     @FXML
     private void initialize() throws SQLException {
-       DatabaseConnectionHandler databaseConnectionHandler = new DatabaseConnectionHandler();
-       ResultSet data = databaseConnectionHandler.getData("SELECT * FROM autorzy");
+        AuthorsNodes authorsNodes = new AuthorsNodes();
+        Integer integer = authorsNodes.countAuthors();
+        System.out.println(integer.intValue());
     }
 
     private Main main;
