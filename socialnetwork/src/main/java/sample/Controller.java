@@ -1,7 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
-
+import sample.config.DatabaseConnectionHandler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,19 +15,9 @@ public class Controller {
 
     @FXML
     private void initialize() throws SQLException {
-        
-        MenageDatabase md = new MenageDatabase();
-        
-        ResultSet rs = md.getData("SELECT * FROM kategorie");
-        rs.first();
-        
-        do {
-            System.out.println(rs.getString(2));
-        }
-        while(rs.next());
-        
-        md.cleaEnvironment();
+       DatabaseConnectionHandler databaseConnectionHandler = new DatabaseConnectionHandler();
+       ResultSet data = databaseConnectionHandler.getData("SELECT * FROM autorzy");
     }
+
     private Main main;
-    
 }
