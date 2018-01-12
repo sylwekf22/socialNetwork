@@ -6,13 +6,15 @@ import java.sql.SQLException;
 
 public class AuthorsNodes {
     private final DatabaseConnectionHandler databaseConnectionHandler;
+    private final String queryWithConcat = "SELECT distinct count(concat(a.imie, ' ', a.nazwisko)) as nodes FROM autorzy a";
+    private final String queryWithoutConcat = "SELECT distinct count(a.id_autora) as nodes FROM autorzy a";
 
     public AuthorsNodes() {
         this.databaseConnectionHandler = new DatabaseConnectionHandler();
     }
 
     public Integer countAuthors() throws SQLException {
-        ResultSet numberOfNodes = databaseConnectionHandler.getData("SELECT count(nazwisko) as nodes FROM autorzy");
+        ResultSet numberOfNodes = databaseConnectionHandler.getData(queryWithoutConcat);
 
         // Setting cursor on the value
         numberOfNodes.next();
