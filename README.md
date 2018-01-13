@@ -24,3 +24,27 @@ databaseName: [your_database_name]
 user : [database_username]
 password: [database_user's_password]
 ```
+
+## Hibernate
+
+1. Create and add file named "hibernate.cfg.xml" in "resources" directory.
+1. Configure file like that:
+
+```xml
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name = "hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name = "hibernate.connection.url">jdbc:mysql://localhost:3306/[database_name]?useTimezone=true&amp;serverTimezone=UTC</property>
+        <property name = "hibernate.connection.username">[your_username]</property>
+        <property name = "hibernate.connection.password">[your_password]</property>
+
+    </session-factory>
+</hibernate-configuration>
+```
+
+1. Run application.

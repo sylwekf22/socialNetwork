@@ -9,3 +9,6 @@
 
 ### database config ###
 /databaseconfig.txt
+
+### Hibernate config ###
+/src/main/resources/hibernate.cfg.xml
