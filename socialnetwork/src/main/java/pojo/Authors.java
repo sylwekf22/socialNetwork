@@ -8,7 +8,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "autorzy")
-public class Author {
+public class Authors {
     @Id
     @Column(name = "id_autora")
     private Integer id;

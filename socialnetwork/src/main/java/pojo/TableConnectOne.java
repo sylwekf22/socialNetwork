@@ -1,14 +1,12 @@
 package pojo;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tab_lacz1")
 public class TableConnectOne {
-
-    @Id
-    private Integer id;
-
     @Column(name = "id_tytulu")
     private Integer title_id;
 
