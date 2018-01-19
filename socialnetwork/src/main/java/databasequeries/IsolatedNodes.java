@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IzolatedNodes {
+public class IsolatedNodes {
 
     private final DatabaseConnectionHandler databaseConnectionHandler;
 
@@ -15,7 +15,7 @@ public class IzolatedNodes {
             "from tab_lacz1 \n" +
             "group by id_tytulu HAVING LICZBA = 1) As b";
 
-    public IzolatedNodes() {
+    public IsolatedNodes() {
         this.databaseConnectionHandler = new DatabaseConnectionHandler();
     }
 
