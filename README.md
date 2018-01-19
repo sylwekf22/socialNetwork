@@ -46,3 +46,7 @@ password: [database_user's_password]
 </hibernate-configuration>
 ```
 3. Run application.
+
+## Guava
+
+[Guava Graph](https://github.com/google/guava/wiki/GraphsExplained)
