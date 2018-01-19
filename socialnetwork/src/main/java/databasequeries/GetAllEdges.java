@@ -24,7 +24,6 @@ public class GetAllEdges {
     public Integer countAllEdges() throws SQLException {
         ResultSet numberOfEdges = databaseConnectionHandler.getData(queryEdges);
 
-        // Setting cursor on the value
         numberOfEdges.next();
         Integer edge = numberOfEdges.getInt("krawedz");
         numberOfEdges.next();

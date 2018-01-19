@@ -1,24 +1,18 @@
 package databasequeries;
 
-import config.DatabaseConnectionHandler;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GetNodesWithoutIsolated {
 
-    private final DatabaseConnectionHandler databaseConnectionHandler;
+    private final GetAllEdges getAllEdges;
+    private final IsolatedNodes isolatedNodes;
 
     public GetNodesWithoutIsolated() {
-        this.databaseConnectionHandler = new DatabaseConnectionHandler();
+        this.getAllEdges = new GetAllEdges();
+        this.isolatedNodes = new IsolatedNodes();
     }
 
     public Integer get() throws SQLException {
-
-        int nodesAmount;
-        GetAllEdges getAllEdges = new GetAllEdges();
-        IsolatedNodes IsolatedNodes = new IsolatedNodes();
-
-        return getAllEdges.get() - IsolatedNodes.get();
+        return getAllEdges.countAllEdges() - isolatedNodes.get();
     }
 }

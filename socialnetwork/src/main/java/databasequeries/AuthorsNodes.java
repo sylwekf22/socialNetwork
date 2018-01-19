@@ -15,11 +15,8 @@ public class AuthorsNodes {
 
     public Integer countAuthors() throws SQLException {
         ResultSet numberOfNodes = databaseConnectionHandler.getData(queryWithoutConcat);
-
-        // Setting cursor on the value
         numberOfNodes.next();
         Integer nodes = numberOfNodes.getInt("nodes");
-
         databaseConnectionHandler.closeEnvironment();
 
         return nodes;

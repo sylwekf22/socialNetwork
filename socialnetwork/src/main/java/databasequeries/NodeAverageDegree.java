@@ -12,7 +12,7 @@ public class NodeAverageDegree {
     private final DatabaseConnectionHandler databaseConnectionHandler;
     private final GetAllEdges getAllEdges;
 
-    private final String queryEdges = "Select a.authorConnectionSum FROM (Select id_autora, count(id_autora) AS authorConnectionSum\n" +
+    private final String query = "Select a.authorConnectionSum FROM (Select id_autora, count(id_autora) AS authorConnectionSum\n" +
             "from tab_lacz1 \n" +
             "group by id_autora) AS a";
 
@@ -22,7 +22,7 @@ public class NodeAverageDegree {
     }
 
     public List<Double> get() throws SQLException {
-        ResultSet numberOfEdges = databaseConnectionHandler.getData(queryEdges);
+        ResultSet numberOfEdges = databaseConnectionHandler.getData(query);
         ArrayList<Double> averageDegreeList = new ArrayList<>();
         double averageDegree = 0.0;
 
@@ -36,8 +36,8 @@ public class NodeAverageDegree {
             if (numberOfEdges.isLast())
                 break;
         }
-        databaseConnectionHandler.closeEnvironment();
 
+        databaseConnectionHandler.closeEnvironment();
         return averageDegreeList;
     }
 }
