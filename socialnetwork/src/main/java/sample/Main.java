@@ -23,7 +23,7 @@ public class Main extends Application {
         launch(args);
         GetAllEdges b = new GetAllEdges();
         try {
-            Integer a = b.countAuthors();
+            Integer a = b.countAllEdges();
         } catch (SQLException e) {
             e.printStackTrace();
         }

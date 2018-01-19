@@ -21,7 +21,7 @@ public class GetAllEdges {
         this.databaseConnectionHandler = new DatabaseConnectionHandler();
     }
 
-    public Integer countAuthors() throws SQLException {
+    public Integer countAllEdges() throws SQLException {
         ResultSet numberOfEdges = databaseConnectionHandler.getData(queryEdges);
 
         // Setting cursor on the value

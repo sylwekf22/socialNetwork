@@ -10,6 +10,7 @@ import java.util.List;
 public class NodeAverageDegree {
 
     private final DatabaseConnectionHandler databaseConnectionHandler;
+    private final GetAllEdges getAllEdges;
 
     private final String queryEdges = "Select a.authorConnectionSum FROM (Select id_autora, count(id_autora) AS authorConnectionSum\n" +
             "from tab_lacz1 \n" +
@@ -17,21 +18,22 @@ public class NodeAverageDegree {
 
     public NodeAverageDegree() {
         this.databaseConnectionHandler = new DatabaseConnectionHandler();
+        this.getAllEdges = new GetAllEdges();
     }
 
     public List<Double> get() throws SQLException {
-        ResultSet numberOfNodes = databaseConnectionHandler.getData(queryEdges);
-        GetAllEdges allEdgesHandler = new GetAllEdges();
-        int edgesAmount = allEdgesHandler.get();
-        double node;
+        ResultSet numberOfEdges = databaseConnectionHandler.getData(queryEdges);
         ArrayList<Double> averageDegreeList = new ArrayList<>();
-        // Setting cursor on the value
+        double averageDegree = 0.0;
 
-        for(;!numberOfNodes.isAfterLast();){
-            numberOfNodes.next();
-            node = numberOfNodes.getDouble("authorConnectionSum")/edgesAmount;
-            averageDegreeList.add(node);
-            if (numberOfNodes.isLast())
+        int edgesAmount = getAllEdges.countAllEdges();
+
+        for(;!numberOfEdges.isAfterLast();){
+            numberOfEdges.next();
+            averageDegree = numberOfEdges.getDouble("authorConnectionSum")/edgesAmount;
+            averageDegreeList.add(averageDegree);
+
+            if (numberOfEdges.isLast())
                 break;
         }
         databaseConnectionHandler.closeEnvironment();
