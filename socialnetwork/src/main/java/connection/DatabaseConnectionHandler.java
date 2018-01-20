@@ -1,4 +1,6 @@
-package config;
+package connection;
+
+import reader.ConfigurationReader;
 
 import java.sql.*;
 
@@ -19,9 +21,9 @@ public class DatabaseConnectionHandler {
     public DatabaseConnectionHandler() {
         this.configurationReader = new ConfigurationReader();
 
-        this.databaseName = configurationReader.get("databaseName");
-        this.user = configurationReader.get("user");
-        this.password = configurationReader.get("password");
+        this.databaseName = configurationReader.getKeyWord("databaseName");
+        this.user = configurationReader.getKeyWord("user");
+        this.password = configurationReader.getKeyWord("password");
 
         this.connection = null;
         this.preparedStatement = null;
@@ -33,9 +35,9 @@ public class DatabaseConnectionHandler {
     public DatabaseConnectionHandler(ConfigurationReader configurationReader) {
         this.configurationReader = configurationReader;
 
-        this.databaseName = configurationReader.get("databaseName");
-        this.user = configurationReader.get("user");
-        this.password = configurationReader.get("password");
+        this.databaseName = configurationReader.getKeyWord("databaseName");
+        this.user = configurationReader.getKeyWord("user");
+        this.password = configurationReader.getKeyWord("password");
 
         this.connection = null;
         this.preparedStatement = null;

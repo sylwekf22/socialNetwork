@@ -12,3 +12,6 @@
 
 ### Hibernate config ###
 /src/main/resources/hibernate.cfg.xml
+
+### Data CSV file ###
+/src/main/resources/data.csv

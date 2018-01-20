@@ -1,14 +1,14 @@
 package databasequeries;
 
-import config.DatabaseConnectionHandler;
+import connection.DatabaseConnectionHandler;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GetAllEdges {
+public class AllEdges {
 
     private final DatabaseConnectionHandler databaseConnectionHandler;
-    private final String queryEdges = "Select SUM((a.liczba/2)*(a.liczba-1)) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
+    private final String query = "Select SUM((a.liczba/2)*(a.liczba-1)) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
             "from tab_lacz1 \n" +
             "group by id_tytulu) As a\n" +
             "having krawedz > 1\n" +
@@ -17,12 +17,12 @@ public class GetAllEdges {
             "from tab_lacz1 \n" +
             "group by id_tytulu HAVING LICZBA = 1) As b";
 
-    public GetAllEdges() {
+    public AllEdges() {
         this.databaseConnectionHandler = new DatabaseConnectionHandler();
     }
 
     public Integer countAllEdges() throws SQLException {
-        ResultSet numberOfEdges = databaseConnectionHandler.getData(queryEdges);
+        ResultSet numberOfEdges = databaseConnectionHandler.getData(query);
 
         numberOfEdges.next();
         Integer edge = numberOfEdges.getInt("krawedz");

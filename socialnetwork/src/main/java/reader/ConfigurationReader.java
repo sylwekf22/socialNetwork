@@ -1,4 +1,4 @@
-package config;
+package reader;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-class ConfigurationReader {
+public class ConfigurationReader {
     private final String fileName;
 
     public ConfigurationReader() {
@@ -22,9 +22,9 @@ class ConfigurationReader {
         return fileName;
     }
 
-    public String get(String keyWord){
+    public String getKeyWord(String keyWord){
         /*
-          Parameter keyWord can only get one of 3 values:
+          Parameter keyWord can only getKeyWord one of 3 values:
           - databaseName
           - user
           - password
@@ -51,6 +51,6 @@ class ConfigurationReader {
     }
 
     private String getFilePath(){
-        return getProjectPath() + "//" + this.fileName;
+        return getProjectPath() + "//" + fileName;
     }
 }
