@@ -5,23 +5,17 @@ import hibernatequeries.AuthorsTitlesHibernate;
 
 import java.util.*;
 
-public class GraphReader {
+public class GraphCreator {
 
     private final AuthorsNodesHibernate authorsNodesHibernate;
     private final AuthorsTitlesHibernate authorsTitlesHibernate;
 
-    public GraphReader() {
+    public GraphCreator() {
         this.authorsNodesHibernate = new AuthorsNodesHibernate();
         this.authorsTitlesHibernate = new AuthorsTitlesHibernate();
     }
 
-    public GraphReader(AuthorsNodesHibernate authorsNodesHibernate,
-                       AuthorsTitlesHibernate authorsTitlesHibernate) {
-        this.authorsNodesHibernate = authorsNodesHibernate;
-        this.authorsTitlesHibernate = authorsTitlesHibernate;
-    }
-
-    public List<List<String>> getGraph(){
+    public List<List<String>> createGraph(){
         List<List<String>> graph = new LinkedList<>();
         List<Integer> authors = authorsNodesHibernate.getAuthorsId();
 
