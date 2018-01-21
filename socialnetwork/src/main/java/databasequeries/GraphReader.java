@@ -1,4 +1,4 @@
-package reader;
+package databasequeries;
 
 import hibernatequeries.AuthorsNodesHibernate;
 import hibernatequeries.AuthorsTitlesHibernate;

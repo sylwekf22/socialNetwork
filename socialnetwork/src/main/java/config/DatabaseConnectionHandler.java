@@ -1,6 +1,4 @@
-package connection;
-
-import reader.ConfigurationReader;
+package config;
 
 import java.sql.*;
 

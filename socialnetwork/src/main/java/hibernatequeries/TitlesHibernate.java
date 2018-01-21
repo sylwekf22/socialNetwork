@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import pojo.Author;
 import pojo.Title;
 
 import java.util.List;
@@ -56,6 +57,21 @@ public class TitlesHibernate {
         session.close();
 
         return titlesNames;
+    }
+
+    public Title getTitle(String id){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("FROM Title t WHERE t.id = :titleId ORDER BY t.id ASC");
+        query.setParameter("titleId", Integer.valueOf(id));
+
+        Title title = (Title)query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return title;
     }
 
 }

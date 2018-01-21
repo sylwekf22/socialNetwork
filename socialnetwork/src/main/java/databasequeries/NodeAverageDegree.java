@@ -1,6 +1,6 @@
 package databasequeries;
 
-import connection.DatabaseConnectionHandler;
+import config.DatabaseConnectionHandler;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

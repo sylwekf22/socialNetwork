@@ -2,15 +2,16 @@ package pojo;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "tytul")
-public class Title {
+public class Title implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id_tytulu")
     private Integer id;
@@ -62,7 +63,7 @@ public class Title {
 
     @Column(name = "abstract")
     @Type(type = "text")
-    private Integer preface;
+    private String preface;
 
     @Column(name = "issn")
     private String issn;
@@ -164,7 +165,7 @@ public class Title {
         return isbn;
     }
 
-    public Integer getPreface() {
+    public String getPreface() {
         return preface;
     }
 

@@ -1,5 +1,6 @@
 package hibernatequeries;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,5 +44,20 @@ public class AuthorsNodesHibernate {
         session.close();
 
         return authors;
+    }
+
+    public Author getAuthor(String id){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("FROM Author a WHERE a.id = :authorId ORDER BY a.id ASC");
+        query.setParameter("authorId", Integer.valueOf(id));
+
+        Author author = (Author) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return author;
     }
 }
