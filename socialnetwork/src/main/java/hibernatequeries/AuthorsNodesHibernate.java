@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import pojo.Author;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorsNodesHibernate {
@@ -59,5 +60,27 @@ public class AuthorsNodesHibernate {
         session.close();
 
         return author;
+    }
+
+    public List<String> getAuthorAndConvertToList(String id){
+        Author author = getAuthor(id);
+        List<String> listAuthor = new LinkedList<>();
+
+        listAuthor.add(String.valueOf(author.getId()));
+        listAuthor.add(String.valueOf(author.getMail()));
+        listAuthor.add(String.valueOf(author.getWww()));
+        listAuthor.add(String.valueOf(author.getCity()));
+        listAuthor.add(String.valueOf(author.getCountry()));
+        listAuthor.add(String.valueOf(author.getContinent()));
+        listAuthor.add(String.valueOf(author.getFirstName()));
+        listAuthor.add(String.valueOf(author.getSecondName()));
+        listAuthor.add(String.valueOf(author.getGroup()));
+        listAuthor.add(String.valueOf(author.getLeader()));
+        listAuthor.add(String.valueOf(author.getHistory()));
+        listAuthor.add(String.valueOf(author.getTested()));
+        listAuthor.add(String.valueOf(author.getAdd_date()));
+        listAuthor.add(String.valueOf(author.getConfirmation()));
+
+        return listAuthor;
     }
 }

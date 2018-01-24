@@ -2,6 +2,7 @@ package databasequeries;
 
 import hibernatequeries.AuthorsNodesHibernate;
 import hibernatequeries.AuthorsTitlesHibernate;
+import hibernatequeries.TitlesHibernate;
 
 import java.util.*;
 
@@ -9,10 +10,12 @@ public class GraphCreator {
 
     private final AuthorsNodesHibernate authorsNodesHibernate;
     private final AuthorsTitlesHibernate authorsTitlesHibernate;
+    private final TitlesHibernate titlesHibernate;
 
     public GraphCreator() {
         this.authorsNodesHibernate = new AuthorsNodesHibernate();
         this.authorsTitlesHibernate = new AuthorsTitlesHibernate();
+        this.titlesHibernate = new TitlesHibernate();
     }
 
     public List<List<String>> createGraph(){
@@ -57,6 +60,54 @@ public class GraphCreator {
                     }
                 }
             }
+        }
+        return graph;
+    }
+
+    public List<List<String>> createGraphWithInformation(){
+        List<List<String>> graph = new LinkedList<>();
+        List<Integer> authors = authorsNodesHibernate.getAuthorsId();
+
+        int step = 1;
+        for (Integer author: authors){
+            List<Integer> titles = authorsTitlesHibernate.getTitlesGivingAuthor(author);
+
+            for (Integer title: titles){
+                List<Integer> coAuthors = authorsTitlesHibernate.getAuthorsGivingTitle(title);
+                Set<Integer> coAuthorsSet = new HashSet<>(coAuthors);
+
+                if (coAuthorsSet.size() <= 1){
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(author)));
+                        relationLine.addAll(titlesHibernate.getTitleAndConvertToList(String.valueOf(title)));
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                } else if (coAuthorsSet.contains(author)) {
+                    coAuthorsSet.remove(author);
+
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(author)));
+                        relationLine.addAll(titlesHibernate.getTitleAndConvertToList(String.valueOf(title)));
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                }else{
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(author)));
+                        relationLine.addAll(titlesHibernate.getTitleAndConvertToList(String.valueOf(title)));
+                        relationLine.addAll(authorsNodesHibernate.getAuthorAndConvertToList(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                }
+            }
+            System.out.println("Author : " +author+ " Step : " +step++ + " Percentage : " + ((step*100.0)/41528.0));
         }
         return graph;
     }
