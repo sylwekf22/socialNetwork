@@ -1,6 +1,5 @@
 package hibernatequeries;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -60,6 +59,25 @@ public class AuthorsNodesHibernate {
         session.close();
 
         return author;
+    }
+
+    public List<String> getFirstNameAndSecondName(String id){
+        List<String> initialsList = new LinkedList<>();
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT a.firstName, a.secondName FROM Author a WHERE a.id = :authorId ORDER BY a.id ASC");
+        query.setParameter("authorId", Integer.valueOf(id));
+
+        Object[] initials = (Object[]) query.uniqueResult();
+        initialsList.add((String) initials[0]);
+        initialsList.add((String) initials[1]);
+
+        transaction.commit();
+        session.close();
+
+        return initialsList;
     }
 
     public List<String> getAuthorAndConvertToList(String id){

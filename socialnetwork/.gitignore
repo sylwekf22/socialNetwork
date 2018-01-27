@@ -16,3 +16,4 @@
 ### Data CSV file ###
 /src/main/resources/data.csv
 /src/main/resources/bid_data.csv
+/src/main/resources/mid_data.csv

@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import pojo.Author;
 import pojo.Title;
 
 import java.util.LinkedList;
@@ -60,11 +59,11 @@ public class TitlesHibernate {
         return titlesNames;
     }
 
-    public Title getTitle(String id){
+    public Title getTitleInstance(String id){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Title t WHERE t.id = :titleId ORDER BY t.id ASC");
+        Query query = session.createQuery("SELECT t.title FROM Title t WHERE t.id = :titleId ORDER BY t.id ASC");
         query.setParameter("titleId", Integer.valueOf(id));
 
         Title title = (Title)query.uniqueResult();
@@ -75,8 +74,23 @@ public class TitlesHibernate {
         return title;
     }
 
+    public String getTitle(String id){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT t.title FROM Title t WHERE t.id = :titleId ORDER BY t.id ASC");
+        query.setParameter("titleId", Integer.valueOf(id));
+
+        String title = (String) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return title;
+    }
+
     public List<String> getTitleAndConvertToList(String id){
-        Title title = getTitle(id);
+        Title title = getTitleInstance(id);
         List<String> listTitle = new LinkedList<>();
 
         listTitle.add(String.valueOf(title.getId()));

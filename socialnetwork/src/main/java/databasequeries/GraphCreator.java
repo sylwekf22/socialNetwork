@@ -64,6 +64,66 @@ public class GraphCreator {
         return graph;
     }
 
+    public List<List<String>> createGraphWithShortInformation(){
+        List<List<String>> graph = new LinkedList<>();
+        List<Integer> authors = authorsNodesHibernate.getAuthorsId();
+
+        int step = 1;
+        for (Integer author: authors){
+            List<Integer> titles = authorsTitlesHibernate.getTitlesGivingAuthor(author);
+
+            for (Integer title: titles){
+                List<Integer> coAuthors = authorsTitlesHibernate.getAuthorsGivingTitle(title);
+                Set<Integer> coAuthorsSet = new HashSet<>(coAuthors);
+
+                if (coAuthorsSet.size() <= 1){
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+
+                        relationLine.add(String.valueOf(author));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(author)));
+                        relationLine.add(String.valueOf(title));
+                        relationLine.add(titlesHibernate.getTitle(String.valueOf(title)));
+                        relationLine.add(String.valueOf(coAuthor));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                } else if (coAuthorsSet.contains(author)) {
+                    coAuthorsSet.remove(author);
+
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+
+                        relationLine.add(String.valueOf(author));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(author)));
+                        relationLine.add(String.valueOf(title));
+                        relationLine.add(titlesHibernate.getTitle(String.valueOf(title)));
+                        relationLine.add(String.valueOf(coAuthor));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                }else{
+                    for (Integer coAuthor : coAuthorsSet) {
+                        List<String> relationLine = new LinkedList<>();
+
+                        relationLine.add(String.valueOf(author));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(author)));
+                        relationLine.add(String.valueOf(title));
+                        relationLine.add(titlesHibernate.getTitle(String.valueOf(title)));
+                        relationLine.add(String.valueOf(coAuthor));
+                        relationLine.addAll(authorsNodesHibernate.getFirstNameAndSecondName(String.valueOf(coAuthor)));
+
+                        graph.add(relationLine);
+                    }
+                }
+            }
+            System.out.println("Author : " +author+ " Step : " +step++ + " Percentage : " + ((step*100.0)/41528.0));
+        }
+        return graph;
+    }
+
     public List<List<String>> createGraphWithInformation(){
         List<List<String>> graph = new LinkedList<>();
         List<Integer> authors = authorsNodesHibernate.getAuthorsId();

@@ -1,10 +1,10 @@
 package databasequeries;
 
-import com.google.common.graph.MutableValueGraph;
+import com.google.common.graph.*;
 import csv.CSVReader;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class GraphOperation {
     private final CSVReader csvReader;
@@ -23,15 +23,19 @@ public class GraphOperation {
         this.graph = graphConverter.convertCSVToGraph();
     }
 
-    public int getAmountOfNodes(){
+    public MutableValueGraph<String, String> getGraph() {
+        return graph;
+    }
+
+    public int getNumberOfNodes(MutableValueGraph<String, String> graph){
         return graph.nodes().size();
     }
 
-    public int getAmountOfEdges(){
+    public int getNumberOfEdges(MutableValueGraph<String, String> graph){
         return graph.edges().size();
     }
 
-    public int getAmountOfDegrees(){
+    public int getNumberOfDegrees(MutableValueGraph<String, String> graph){
         int sum = 0;
 
         for (String node : graph.nodes()) {
@@ -40,7 +44,11 @@ public class GraphOperation {
         return sum;
     }
 
-    public Map<String, Integer> getListOfDegrees(){
+    public double getNumberOfAverageDegree(MutableValueGraph<String, String> graph){
+        return getNumberOfDegrees(graph) / getNumberOfNodes(graph);
+    }
+
+    public Map<String, Integer> getListOfDegrees(MutableValueGraph<String, String> graph){
         Map<String, Integer> mapOfDegrees = new HashMap<>();
 
         for (String node : graph.nodes()) {
@@ -49,14 +57,53 @@ public class GraphOperation {
         return mapOfDegrees;
     }
 
-    public Map<String, Double> getListOfAverageDegrees(){
+    public Map<String, Double> getListOfAverageDegrees(MutableValueGraph<String, String> graph){
         Map<String, Double> mapOfAverageDegrees = new HashMap<>();
 
-        double sumOfDegrees = (double) getAmountOfDegrees();
+        double sumOfDegrees = (double) getNumberOfDegrees(graph);
 
         for (String node : graph.nodes()) {
             mapOfAverageDegrees.put(node, graph.degree(node)/sumOfDegrees);
         }
         return mapOfAverageDegrees;
+    }
+
+    public List<List<String>> getAdjacencyMatrix(MutableValueGraph<String, String> graph){
+        return null;
+    }
+
+    public Map<String, Set<String>> getAdjacencyList(MutableValueGraph<String, String> graph){
+        Map<String, Set<String>> adjacencyList = new HashMap<>();
+
+        for(String node : graph.nodes()){
+            adjacencyList.put(node, graph.adjacentNodes(node));
+        }
+        return adjacencyList;
+    }
+
+    public List<String> getListOfSortedNodes(MutableValueGraph<String, String> graph){
+        return graph.nodes()
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getListOfIsolatedNodes(MutableValueGraph<String, String> graph){
+        List<String> isolatedNodes = new LinkedList<>();
+        for (String node : graph.nodes()){
+            if (graph.hasEdgeConnecting(node, node) && graph.degree(node) == 2){
+                isolatedNodes.add(node);
+            }
+        }
+        return isolatedNodes;
+    }
+
+    public MutableValueGraph<String, String> removeIsolatedNodes(MutableValueGraph<String, String> graph){
+        List<String> listOfIsolatedNodes = getListOfIsolatedNodes(graph);
+        MutableValueGraph<String, String> graphWithoutIsolatedNodes = graphConverter.convertCSVToGraph();
+
+        listOfIsolatedNodes.forEach(graphWithoutIsolatedNodes::removeNode);
+
+        return graphWithoutIsolatedNodes;
     }
 }
