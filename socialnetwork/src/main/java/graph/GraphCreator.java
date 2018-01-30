@@ -1,4 +1,4 @@
-package databasequeries;
+package graph;
 
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
@@ -7,10 +7,10 @@ import csv.CSVReader;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-public class GraphConverter {
+public class GraphCreator {
     private CSVReader csvReader;
 
-    public GraphConverter(CSVReader csvReader) {
+    public GraphCreator(CSVReader csvReader) {
         this.csvReader = csvReader;
     }
 
@@ -22,7 +22,7 @@ public class GraphConverter {
         this.csvReader = csvReader;
     }
 
-    public MutableValueGraph<String, String> convertCSVToGraph(){
+    public MutableValueGraph<String, String> createGraphFromFile(){
         MutableValueGraph<String, String> valueGraph = ValueGraphBuilder.undirected().allowsSelfLoops(true).build();
         Stream<String> csvLines = csvReader.readCSV();
         Iterator<String> iterator = csvLines.iterator();

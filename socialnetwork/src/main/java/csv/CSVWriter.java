@@ -24,16 +24,6 @@ public class CSVWriter {
         writeLine(w, values, separators, ' ');
     }
 
-    private static String replaceQuotes(String value) {
-
-        String result = value;
-        if (result.contains("\"")) {
-            result = result.replace("\"", "\"\"");
-        }
-        return result;
-
-    }
-
     public void writeLine(FileWriter fileWriter, List<String> values, char separators, char customQuote) throws IOException {
 
         boolean first = true;
@@ -57,6 +47,16 @@ public class CSVWriter {
         }
         stringBuilder.append("\n");
         fileWriter.append(stringBuilder.toString());
+    }
+
+    private static String replaceQuotes(String value) {
+
+        String result = value;
+        if (result.contains("\"")) {
+            result = result.replace("\"", "\"\"");
+        }
+        return result;
+
     }
 
     public void saveDataToCSV(List<List<String>> data, String fileName) throws IOException {

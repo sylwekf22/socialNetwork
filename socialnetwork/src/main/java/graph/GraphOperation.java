@@ -1,4 +1,4 @@
-package databasequeries;
+package graph;
 
 import com.google.common.graph.*;
 import csv.CSVReader;
@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 
 public class GraphOperation {
     private final CSVReader csvReader;
-    private final GraphConverter graphConverter;
+    private final GraphCreator graphCreator;
     private MutableValueGraph<String, String> graph;
 
     public GraphOperation() {
         this.csvReader = new CSVReader("data.csv");
-        this.graphConverter = new GraphConverter(csvReader);
-        this.graph = graphConverter.convertCSVToGraph();
+        this.graphCreator = new GraphCreator(csvReader);
+        this.graph = graphCreator.createGraphFromFile();
     }
 
     public GraphOperation(String fileName) {
         this.csvReader = new CSVReader(fileName);
-        this.graphConverter = new GraphConverter(csvReader);
-        this.graph = graphConverter.convertCSVToGraph();
+        this.graphCreator = new GraphCreator(csvReader);
+        this.graph = graphCreator.createGraphFromFile();
     }
 
     public MutableValueGraph<String, String> getGraph() {
@@ -100,7 +100,7 @@ public class GraphOperation {
 
     public MutableValueGraph<String, String> removeIsolatedNodes(MutableValueGraph<String, String> graph){
         List<String> listOfIsolatedNodes = getListOfIsolatedNodes(graph);
-        MutableValueGraph<String, String> graphWithoutIsolatedNodes = graphConverter.convertCSVToGraph();
+        MutableValueGraph<String, String> graphWithoutIsolatedNodes = graphCreator.createGraphFromFile();
 
         listOfIsolatedNodes.forEach(graphWithoutIsolatedNodes::removeNode);
 
