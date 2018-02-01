@@ -1,9 +1,11 @@
 package sample;
 
 import com.google.common.graph.MutableValueGraph;
-import csv.CSVReader;
 import graph.*;
 import javafx.fxml.FXML;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -15,11 +17,21 @@ public class Controller {
 
     @FXML
     private void initialize() {
-        CSVReader csvReader = new CSVReader("data.csv");
-        GraphCreator graphCreator = new GraphCreator(csvReader);
+        GraphCreator graphCreator = new GraphCreator("data.csv");
+
+        GraphOperation graphOperation = new GraphOperation();
+
         MutableValueGraph<String, String> graph = graphCreator.createGraphFromFile();
-        GraphConnectedComponents graphConnectedComponents = new GraphConnectedComponents(graph);
-        int countConnectedComponents = graphConnectedComponents.countConnectedComponents(graph);
+        MutableValueGraph<String, String> valueGraph = graphOperation.removeIsolatedNodes(graph);
+
+        GraphConnectedComponents graphConnectedComponents = new GraphConnectedComponents(valueGraph);
+        graphConnectedComponents.countConnectedComponents(valueGraph);
+        graphConnectedComponents.computeListOfConnectedComponents();
+        graphConnectedComponents.printListOfConnectedComponents();
+        
+        int theSmallestConnectedComponents = graphConnectedComponents.findTheSmallestConnectedComponents();
+        int theBiggestConnectedComponents = graphConnectedComponents.findTheBiggestConnectedComponents();
+        System.out.println(theSmallestConnectedComponents + " " + theBiggestConnectedComponents);
     }
 
     private Main main;

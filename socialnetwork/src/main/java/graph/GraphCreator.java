@@ -10,16 +10,8 @@ import java.util.stream.Stream;
 public class GraphCreator {
     private CSVReader csvReader;
 
-    public GraphCreator(CSVReader csvReader) {
-        this.csvReader = csvReader;
-    }
-
-    public CSVReader getCsvReader() {
-        return csvReader;
-    }
-
-    public void setCsvReader(CSVReader csvReader) {
-        this.csvReader = csvReader;
+    public GraphCreator(String fileName) {
+        this.csvReader = new CSVReader(fileName);
     }
 
     public MutableValueGraph<String, String> createGraphFromFile(){

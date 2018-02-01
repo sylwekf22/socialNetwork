@@ -7,24 +7,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GraphOperation {
-    private final CSVReader csvReader;
     private final GraphCreator graphCreator;
-    private MutableValueGraph<String, String> graph;
 
     public GraphOperation() {
-        this.csvReader = new CSVReader("data.csv");
-        this.graphCreator = new GraphCreator(csvReader);
-        this.graph = graphCreator.createGraphFromFile();
-    }
-
-    public GraphOperation(String fileName) {
-        this.csvReader = new CSVReader(fileName);
-        this.graphCreator = new GraphCreator(csvReader);
-        this.graph = graphCreator.createGraphFromFile();
-    }
-
-    public MutableValueGraph<String, String> getGraph() {
-        return graph;
+        graphCreator = new GraphCreator("data.csv");
     }
 
     public int getNumberOfNodes(MutableValueGraph<String, String> graph){

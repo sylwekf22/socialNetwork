@@ -2,44 +2,45 @@ package graph;
 
 import com.google.common.graph.MutableValueGraph;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GraphConnectedComponents {
 
-    private boolean[] visitedNodes;
-    private int[] arrayOfConnectedComponentInNode;
-    private int[] numberOfNodesInComponent;
-    private int connectedComponentsCounter;
+    private boolean[] marked;
+    private int[] id;
+    private int[] size;
+    private int count;
     private List<String> sortedListOfNodes;
+    private List[] components;
 
     public GraphConnectedComponents(MutableValueGraph<String, String> graph) {
-        visitedNodes = new boolean[getNumberOfNodes(graph)];
-        arrayOfConnectedComponentInNode = new int[getNumberOfNodes(graph)];
-        numberOfNodesInComponent = new int[getNumberOfNodes(graph)];
+        marked = new boolean[getNumberOfNodes(graph)];
+        id = new int[getNumberOfNodes(graph)];
+        size = new int[getNumberOfNodes(graph)];
         sortedListOfNodes = getListOfSortedNodes(graph);
     }
 
     public void doDepthFirstSearch(MutableValueGraph<String, String> graph, String startNode) {
-        visitedNodes[getIndexOfNode(startNode)] = true;
-        arrayOfConnectedComponentInNode[getIndexOfNode(startNode)] = connectedComponentsCounter;
-        numberOfNodesInComponent[connectedComponentsCounter]++;
+        marked[getIndexOfNode(startNode)] = true;
+        id[getIndexOfNode(startNode)] = count;
+        size[count]++;
 
         for (String node : graph.adjacentNodes(startNode)) {
-            if (!visitedNodes[getIndexOfNode(node)]) {
+            if (!marked[getIndexOfNode(node)]) {
                 doDepthFirstSearch(graph, node);
             }
         }
     }
 
-    public int countConnectedComponents(MutableValueGraph<String, String> graph){
-        for (String node : getListOfSortedNodes(graph)){
-            if (!visitedNodes[getIndexOfNode(node)]) {
+    public void countConnectedComponents(MutableValueGraph<String, String> graph){
+        for (String node : sortedListOfNodes){
+            if (!marked[getIndexOfNode(node)]) {
                 doDepthFirstSearch(graph, node);
-                connectedComponentsCounter++;
+                count++;
             }
         }
-        return connectedComponentsCounter;
     }
 
     private List<String> getListOfSortedNodes(MutableValueGraph<String, String> graph) {
@@ -54,15 +55,69 @@ public class GraphConnectedComponents {
         return sortedListOfNodes.indexOf(node);
     }
 
-    public int[] getArrayOfConnectedComponentInNode() {
-        return arrayOfConnectedComponentInNode;
+    public void computeListOfConnectedComponents(){
+        int numberOfConnectedComponents = getCount();
+        components = new List[numberOfConnectedComponents];
+
+        for (int i = 0; i < numberOfConnectedComponents; i++) {
+            components[i] = new LinkedList();
+        }
+
+        for (String node : sortedListOfNodes) {
+            components[getNodeId(node)].add(node);
+        }
     }
 
-    public int[] getNumberOfNodesInComponent() {
-        return numberOfNodesInComponent;
+    public void printListOfConnectedComponents(){
+        int numberOfConnectedComponents = getCount();
+        for (int i = 0; i < numberOfConnectedComponents; i++) {
+            System.out.println("Component : " + i + " Nodes : " + components[i]);
+        }
     }
 
-    public int getConnectedComponentsCounter() {
-        return connectedComponentsCounter;
+    public int findTheSmallestConnectedComponents(){
+        int numberOfConnectedComponents = getCount();
+        int max = 0;
+        for (int i = 0; i < numberOfConnectedComponents; i++) {
+            if (components[i].size() < max) {
+                max = components[i].size();
+            }
+        }
+        return max;
+    }
+
+    public int findTheBiggestConnectedComponents(){
+        int numberOfConnectedComponents = getCount();
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < numberOfConnectedComponents; i++) {
+            if (components[i].size() > min) {
+                min = components[i].size();
+            }
+        }
+        return min;
+    }
+
+    public int[] getId() {
+        return id;
+    }
+
+    public int getNodeId(String node){
+        return id[getIndexOfNode(node)];
+    }
+
+    public int[] getSize() {
+        return size;
+    }
+
+    public int getNodeSize(String node){
+        return size[id[getIndexOfNode(node)]];
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public List[] getComponents() {
+        return components;
     }
 }
