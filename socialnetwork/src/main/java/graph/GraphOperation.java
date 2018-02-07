@@ -1,9 +1,11 @@
 package graph;
 
 import com.google.common.graph.*;
+import org.jgrapht.*;
 import csv.CSVReader;
 import csv.CSVWriter;
-
+import org.jgrapht.Graph;
+import org.jgrapht.alg.shortestpath.GraphMeasurer;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -57,6 +59,18 @@ public class GraphOperation {
         return mapOfAverageDegrees;
     }
 
+    public double getGraphDiameter(Graph<String, String> graph){
+
+        GraphMeasurer<String, String> graphMeasurer = new GraphMeasurer (graph);
+        return graphMeasurer.getDiameter();
+    }
+
+    public double getGraphRadius(Graph<String, String> graph){
+
+        GraphMeasurer<String, String> graphMeasurer = new GraphMeasurer (graph);
+        return graphMeasurer.getRadius();
+    }
+
     public void saveAdjacencyMatrix(MutableValueGraph<String, String> graph) throws IOException {
         Set<String> nodes = graph.nodes();
         int amountOfNodes = nodes.size();
@@ -85,9 +99,7 @@ public class GraphOperation {
                 .collect(Collectors.toList());
     }
 
-//    public void getAdjacencyMatrix(MutableValueGraph<String, String> graph){
-//        String[][] adjacencyMatrix = new String[graph][];
-//    }
+
 
     public List<String> getListOfIsolatedNodes(MutableValueGraph<String, String> graph){
         List<String> isolatedNodes = new LinkedList<>();
