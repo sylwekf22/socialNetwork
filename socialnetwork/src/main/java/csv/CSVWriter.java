@@ -2,7 +2,9 @@ package csv;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class CSVWriter {
 
@@ -67,6 +69,31 @@ public class CSVWriter {
             writeLine(writer, relationLine, ',');
         }
 
+        writer.flush();
+        writer.close();
+    }
+
+    public void savAdjacencyMatrixToTXT(FileWriter writer, List<Set<String>> adjencyList, Set<String> nodes) throws IOException {
+
+        int nodeSize = nodes.size();
+        Set<String> relatedAdjency;
+
+
+
+            for (int i = 0; i < nodeSize; i++){
+                relatedAdjency = adjencyList.get(i);
+                writer.write("");
+                for(String node : nodes){
+                if(relatedAdjency.contains(node)) {
+                    writer.append("1 ");
+                }
+                else {
+                    writer.append("0 ");
+
+                }
+            }
+                writer.append("\n");
+        }
         writer.flush();
         writer.close();
     }

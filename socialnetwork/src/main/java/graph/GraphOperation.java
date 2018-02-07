@@ -2,7 +2,10 @@ package graph;
 
 import com.google.common.graph.*;
 import csv.CSVReader;
+import csv.CSVWriter;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -54,8 +57,16 @@ public class GraphOperation {
         return mapOfAverageDegrees;
     }
 
-    public List<List<String>> getAdjacencyMatrix(MutableValueGraph<String, String> graph){
-        return null;
+    public void saveAdjacencyMatrix(MutableValueGraph<String, String> graph) throws IOException {
+        Set<String> nodes = graph.nodes();
+        int amountOfNodes = nodes.size();
+        List<Set<String>> adjacencySet = new ArrayList<>(amountOfNodes);
+        CSVWriter csvWriter = new CSVWriter();
+
+        for(String node : nodes){
+            adjacencySet.add(graph.adjacentNodes(node));
+        }
+        csvWriter.savAdjacencyMatrixToTXT(new FileWriter("adjacencyMatrix.txt"), adjacencySet, nodes);
     }
 
     public Map<String, Set<String>> getAdjacencyList(MutableValueGraph<String, String> graph){
@@ -73,6 +84,10 @@ public class GraphOperation {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+//    public void getAdjacencyMatrix(MutableValueGraph<String, String> graph){
+//        String[][] adjacencyMatrix = new String[graph][];
+//    }
 
     public List<String> getListOfIsolatedNodes(MutableValueGraph<String, String> graph){
         List<String> isolatedNodes = new LinkedList<>();
