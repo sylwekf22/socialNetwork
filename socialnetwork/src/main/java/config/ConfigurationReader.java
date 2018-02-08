@@ -23,23 +23,24 @@ public class ConfigurationReader {
     }
 
     public String getKeyWord(String keyWord){
-        /*
-          Parameter keyWord can only getKeyWord one of 3 values:
-          - databaseName
-          - user
-          - password
-         */
         Stream<String> lines = null;
+
         try {
             lines = Files.lines(Paths.get(getFilePath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Optional<String> user = lines.filter(s -> s.contains(keyWord)).findFirst();
-        String s = user.get();
+        Optional<String> user = null;
+        String lineWithKeyWord = null;
+        if (lines != null) {
+            user = lines.filter(line -> line.contains(keyWord)).findFirst();
+            lineWithKeyWord = user.get();
+        }else{
+            throw new NullPointerException("Given key word is not correct!");
+        }
 
-        String[] split = s.replaceAll("\\s+","").split(":");
+        String[] split = lineWithKeyWord.replaceAll("\\s+","").split(":");
         if (split.length <= 1){
             return " ";
         }

@@ -1,9 +1,7 @@
-package graph;
+package graphconverter;
 
 public class GraphConverterFactory {
-    public GraphConverterFactory() {
-
-    }
+    public GraphConverterFactory() { }
 
     public GraphConverter getConverter(Class<? extends GraphConverter> graphConverterClass) {
         if (graphConverterClass.isInstance(LittleGraphConverter.class)) {

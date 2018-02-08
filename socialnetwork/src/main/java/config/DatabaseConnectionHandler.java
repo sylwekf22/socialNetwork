@@ -3,8 +3,8 @@ package config;
 import java.sql.*;
 
 public class DatabaseConnectionHandler {
-    private final String sslOption = "?useSSL=false";
-    private final String timeZoneOption = "useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private String sslOption = "?useSSL=false";
+    private String timeZoneOption = "useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     private final ConfigurationReader configurationReader;
 

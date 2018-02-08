@@ -75,22 +75,22 @@ public class GraphConnectedComponents {
         }
     }
 
-    public int findTheSmallestConnectedComponents(){
+    public int findTheBiggestConnectedComponents(){
         int numberOfConnectedComponents = getCount();
         int max = 0;
         for (int i = 0; i < numberOfConnectedComponents; i++) {
-            if (components[i].size() < max) {
+            if (components[i].size() > max) {
                 max = components[i].size();
             }
         }
         return max;
     }
 
-    public int findTheBiggestConnectedComponents(){
+    public int findTheSmallestConnectedComponents(){
         int numberOfConnectedComponents = getCount();
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < numberOfConnectedComponents; i++) {
-            if (components[i].size() > min) {
+            if (components[i].size() < min) {
                 min = components[i].size();
             }
         }

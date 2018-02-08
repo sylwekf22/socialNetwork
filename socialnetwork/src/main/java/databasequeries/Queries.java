@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Queries {
 
-    private final DatabaseConnectionHandler databaseConnectionHandler;
-    private final String allEdgesQuery = "Select SUM((a.liczba/2)*(a.liczba-1)) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
+    private DatabaseConnectionHandler databaseConnectionHandler;
+    private String allEdgesQuery = "Select SUM((a.liczba/2)*(a.liczba-1)) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
             "from tab_lacz1 \n" +
             "group by id_tytulu) As a\n" +
             "having krawedz > 1\n" +
@@ -18,11 +18,11 @@ public class Queries {
             "Select COUNT(id_tytulu) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
             "from tab_lacz1 \n" +
             "group by id_tytulu HAVING LICZBA = 1) As b";
-    private final String allAuthorsQuery = "SELECT distinct count(a.id_autora) as nodes FROM autorzy a";
-    private final String isolatedNodesQuery = "Select COUNT(id_tytulu) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
+    private String allAuthorsQuery = "SELECT distinct count(a.id_autora) as nodes FROM autorzy a";
+    private String isolatedNodesQuery = "Select COUNT(id_tytulu) as krawedz  FROM (Select id_tytulu, count(id_autora) As liczba\n" +
             "from tab_lacz1 \n" +
             "group by id_tytulu HAVING LICZBA = 1) As b";
-    private final String averageDegreeQuery = "Select a.authorConnectionSum FROM (Select id_autora, count(id_autora) AS authorConnectionSum\n" +
+    private String averageDegreeQuery = "Select a.authorConnectionSum FROM (Select id_autora, count(id_autora) AS authorConnectionSum\n" +
             "from tab_lacz1 \n" +
             "group by id_autora) AS a";
 

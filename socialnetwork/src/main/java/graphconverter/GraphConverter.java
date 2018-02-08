@@ -1,10 +1,11 @@
-package graph;
+package graphconverter;
 
 import hibernatequeries.AuthorsNodesHibernate;
 import hibernatequeries.AuthorsTitlesHibernate;
 import hibernatequeries.TitlesHibernate;
 
 import java.util.List;
+import java.util.Set;
 
 public abstract class GraphConverter {
     AuthorsNodesHibernate authorsNodesHibernate;
@@ -18,4 +19,11 @@ public abstract class GraphConverter {
     }
 
     public abstract List<List<String>> convertGraphToList();
+
+    protected abstract void saveConnectionBetweenAuthorTitleAndCoAuthors(List<List<String>> graph,
+                                                                         Integer author,
+                                                                         Integer title,
+                                                                         Set<Integer> coAuthorsSet);
+
+    protected abstract void saveAuthorsTitles(List<List<String>> graph, Integer author, List<Integer> titles);
 }

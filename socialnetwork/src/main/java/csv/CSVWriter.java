@@ -2,6 +2,7 @@ package csv;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -61,24 +62,36 @@ public class CSVWriter {
 
     }
 
-    public void saveDataToCSV(List<List<String>> data, String fileName) throws IOException {
+    public void saveDataToCSV(List<List<String>> data, String fileName) {
         String csvFileName = fileName + ".csv";
-        FileWriter writer = new FileWriter(csvFileName);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(csvFileName);
 
-        for (List<String> relationLine: data){
-            writeLine(writer, relationLine, ',');
+            for (List<String> relationLine: data){
+                writeLine(writer, relationLine, ',');
+            }
+
+            writer.flush();
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(writer != null){
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-        writer.flush();
-        writer.close();
     }
 
     public void savAdjacencyMatrixToTXT(FileWriter writer, List<Set<String>> adjencyList, Set<String> nodes) throws IOException {
 
         int nodeSize = nodes.size();
         Set<String> relatedAdjency;
-
-
 
             for (int i = 0; i < nodeSize; i++){
                 relatedAdjency = adjencyList.get(i);
@@ -89,7 +102,6 @@ public class CSVWriter {
                 }
                 else {
                     writer.append("0 ");
-
                 }
             }
                 writer.append("\n");

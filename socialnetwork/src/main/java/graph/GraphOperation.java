@@ -1,8 +1,7 @@
 package graph;
 
 import com.google.common.graph.*;
-import org.jgrapht.*;
-import csv.CSVReader;
+import graphcreator.GuavaGraphCreator;
 import csv.CSVWriter;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.shortestpath.GraphMeasurer;
@@ -12,10 +11,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GraphOperation {
-    private final GraphCreator graphCreator;
+    private final GuavaGraphCreator guavaGraphCreator;
 
     public GraphOperation() {
-        graphCreator = new GraphCreator("data.csv");
+        guavaGraphCreator = new GuavaGraphCreator("data.csv");
     }
 
     public int getNumberOfNodes(MutableValueGraph<String, String> graph){
@@ -36,7 +35,7 @@ public class GraphOperation {
     }
 
     public double getNumberOfAverageDegree(MutableValueGraph<String, String> graph){
-        return getNumberOfDegrees(graph) / getNumberOfNodes(graph);
+        return (double)getNumberOfDegrees(graph) / (double)getNumberOfNodes(graph);
     }
 
     public Map<String, Integer> getListOfDegrees(MutableValueGraph<String, String> graph){
@@ -60,13 +59,11 @@ public class GraphOperation {
     }
 
     public double getGraphDiameter(Graph<String, String> graph){
-
         GraphMeasurer<String, String> graphMeasurer = new GraphMeasurer (graph);
         return graphMeasurer.getDiameter();
     }
 
     public double getGraphRadius(Graph<String, String> graph){
-
         GraphMeasurer<String, String> graphMeasurer = new GraphMeasurer (graph);
         return graphMeasurer.getRadius();
     }
@@ -99,8 +96,6 @@ public class GraphOperation {
                 .collect(Collectors.toList());
     }
 
-
-
     public List<String> getListOfIsolatedNodes(MutableValueGraph<String, String> graph){
         List<String> isolatedNodes = new LinkedList<>();
         for (String node : graph.nodes()){
@@ -113,7 +108,7 @@ public class GraphOperation {
 
     public MutableValueGraph<String, String> removeIsolatedNodes(MutableValueGraph<String, String> graph){
         List<String> listOfIsolatedNodes = getListOfIsolatedNodes(graph);
-        MutableValueGraph<String, String> graphWithoutIsolatedNodes = graphCreator.createGraphFromFile();
+        MutableValueGraph<String, String> graphWithoutIsolatedNodes = guavaGraphCreator.createGraphFromFile();
 
         listOfIsolatedNodes.forEach(graphWithoutIsolatedNodes::removeNode);
 
