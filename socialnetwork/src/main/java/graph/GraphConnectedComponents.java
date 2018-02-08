@@ -2,8 +2,10 @@ package graph;
 
 import com.google.common.graph.MutableValueGraph;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GraphConnectedComponents {
@@ -15,11 +17,7 @@ public class GraphConnectedComponents {
     private List<String> sortedListOfNodes;
     private List[] components;
 
-    public GraphConnectedComponents(MutableValueGraph<String, String> graph) {
-        marked = new boolean[getNumberOfNodes(graph)];
-        id = new int[getNumberOfNodes(graph)];
-        size = new int[getNumberOfNodes(graph)];
-        sortedListOfNodes = getListOfSortedNodes(graph);
+    public GraphConnectedComponents() {
     }
 
     public void doDepthFirstSearch(MutableValueGraph<String, String> graph, String startNode) {
@@ -35,6 +33,11 @@ public class GraphConnectedComponents {
     }
 
     public void countConnectedComponents(MutableValueGraph<String, String> graph){
+        marked = new boolean[getNumberOfNodes(graph)];
+        id = new int[getNumberOfNodes(graph)];
+        size = new int[getNumberOfNodes(graph)];
+        sortedListOfNodes = getListOfSortedNodes(graph);
+
         for (String node : sortedListOfNodes){
             if (!marked[getIndexOfNode(node)]) {
                 doDepthFirstSearch(graph, node);
@@ -75,7 +78,7 @@ public class GraphConnectedComponents {
         }
     }
 
-    public int findTheBiggestConnectedComponents(){
+    public int findTheBiggestConnectedComponent(){
         int numberOfConnectedComponents = getCount();
         int max = 0;
         for (int i = 0; i < numberOfConnectedComponents; i++) {
@@ -86,7 +89,7 @@ public class GraphConnectedComponents {
         return max;
     }
 
-    public int findTheSmallestConnectedComponents(){
+    public int findTheSmallestConnectedComponent(){
         int numberOfConnectedComponents = getCount();
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < numberOfConnectedComponents; i++) {
@@ -95,6 +98,24 @@ public class GraphConnectedComponents {
             }
         }
         return min;
+    }
+
+    public Map<Integer, List<Integer>> getMapOfIdenticalComponentsLength(){
+        Map<Integer, List<Integer>> mapOfComponentsLength = new HashMap<>();
+        int theBiggestConnectedComponent = findTheBiggestConnectedComponent();
+        int componentLength = 1;
+
+        while (componentLength <= theBiggestConnectedComponent) {
+            List<Integer> listOfComponents = new LinkedList<>();
+            for (int i = 0; i < components.length; i++) {
+                if (components[i].size() == componentLength) {
+                    listOfComponents.add(i);
+                }
+            }
+            mapOfComponentsLength.put(componentLength, listOfComponents);
+            componentLength++;
+        }
+        return mapOfComponentsLength;
     }
 
     public int[] getId() {

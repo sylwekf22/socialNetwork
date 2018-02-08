@@ -1,8 +1,6 @@
 package graphcreator;
 
-import csv.CSVReader;
-import org.jgrapht.Graph;
-import org.jgrapht.graph.SimpleGraph;
+import org.jgrapht.graph.*;
 
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -13,16 +11,17 @@ public class JGraphTGraphCreator extends GraphCreator{
         super(fileName);
     }
 
-    public Graph<String, String> createGraphFromFile(){
-        Graph<String, String> graph = new SimpleGraph<>(String.class);
+    public Multigraph<String, String> createGraphFromFile(){
+        Multigraph<String, String> graph = new Multigraph<>(String.class);
         Stream<String> csvLines = csvReader.readCSV();
         Iterator<String> iterator = csvLines.iterator();
 
         while (iterator.hasNext()) {
             String[] splitLine = splitLine(iterator.next());
 
-            if(splitLine[0].equals(splitLine[2]))
+            if (splitLine[0].equals(splitLine[2])) {
                 continue;
+            }
 
             graph.addVertex(splitLine[0]);
             graph.addVertex(splitLine[2]);
