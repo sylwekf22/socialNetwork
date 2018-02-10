@@ -72,16 +72,14 @@ public class GraphConnectedComponents {
     }
 
     public void printListOfConnectedComponents(){
-        int numberOfConnectedComponents = getCount();
-        for (int i = 0; i < numberOfConnectedComponents; i++) {
+        for (int i = 0; i < components.length; i++) {
             System.out.println("Component : " + i + " Nodes : " + components[i]);
         }
     }
 
     public int findTheBiggestConnectedComponent(){
-        int numberOfConnectedComponents = getCount();
         int max = 0;
-        for (int i = 0; i < numberOfConnectedComponents; i++) {
+        for (int i = 0; i < components.length; i++) {
             if (components[i].size() > max) {
                 max = components[i].size();
             }
@@ -90,14 +88,25 @@ public class GraphConnectedComponents {
     }
 
     public int findTheSmallestConnectedComponent(){
-        int numberOfConnectedComponents = getCount();
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i < numberOfConnectedComponents; i++) {
+        for (int i = 0; i < components.length; i++) {
             if (components[i].size() < min) {
                 min = components[i].size();
             }
         }
         return min;
+    }
+
+    public List getTheBiggestConnectedComponent(){
+        int max = 0;
+        List<String> componentNodes = new LinkedList<>();
+        for (int i = 0; i < components.length; i++) {
+            if (components[i].size() > max) {
+                max = components[i].size();
+                componentNodes = new LinkedList<>(components[i]);
+            }
+        }
+        return componentNodes;
     }
 
     public Map<Integer, List<Integer>> getMapOfIdenticalComponentsLength(){

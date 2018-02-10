@@ -2,7 +2,6 @@ package graphcreator;
 
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
-import csv.CSVReader;
 
 import java.util.Iterator;
 import java.util.stream.Stream;

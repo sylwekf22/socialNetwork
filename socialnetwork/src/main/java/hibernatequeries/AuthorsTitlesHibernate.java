@@ -27,9 +27,9 @@ public class AuthorsTitlesHibernate {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("SELECT a.id, t.id FROM Author a \n" +
-                "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id\n" +
-                "JOIN Title t ON tabl1.title_id = t.id ORDER BY a.id ASC, t.id ASC");
+        Query query = session.createQuery("SELECT a.id, t.id FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id ORDER BY a.id ASC, t.id ASC");
 
         Map<Integer, Integer> authorsTitles = new LinkedHashMap<>();
 
@@ -53,11 +53,11 @@ public class AuthorsTitlesHibernate {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("SELECT t.id FROM Author a \n" +
-                "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id\n" +
-                "JOIN Title t ON tabl1.title_id = t.id\n" +
-                "WHERE a.id = :givenId\n" +
-                "ORDER BY t.id ASC");
+        Query query = session.createQuery("SELECT t.id FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id " +
+                                             "WHERE a.id = :givenId " +
+                                             "ORDER BY t.id ASC");
         query.setParameter("givenId", authorId);
 
         List<Integer> titles = query.list();
@@ -72,12 +72,78 @@ public class AuthorsTitlesHibernate {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("SELECT a.id FROM Author a \n" +
-                "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id\n" +
-                "JOIN Title t ON tabl1.title_id = t.id\n" +
-                "WHERE t.id = :givenId\n" +
-                "ORDER BY a.id ASC");
+        Query query = session.createQuery("SELECT a.id FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id " +
+                                             "WHERE t.id = :givenId " +
+                                             "ORDER BY a.id ASC");
         query.setParameter("givenId", titleId);
+
+        List<Integer> authors = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return authors;
+    }
+
+    public List<Integer> getAuthorsIdBetweenTwoPublicationYears(String startDate, String endDate){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT DISTINCT a.id " +
+                                             "FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id " +
+                                             "WHERE t.publication_year BETWEEN :startDate AND :endDate " +
+                                             "ORDER BY a.id ASC");
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+
+        List<Integer> authors = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return authors;
+    }
+
+    public List<Integer> getTitlesGivingAuthorAndBetweenTwoPublicationYears(Integer authorId, String startDate, String endDate){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT t.id " +
+                                             "FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id " +
+                                             "WHERE a.id = :givenId " +
+                                             "AND t.publication_year BETWEEN :startDate AND :endDate " +
+                                             "ORDER BY t.id ASC");
+        query.setParameter("givenId", authorId);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+
+        List<Integer> titles = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return titles;
+    }
+
+    public List<Integer> getAuthorsGivingTitleAndBetweenTwoPublicationYears(Integer titleId, String startDate, String endDate){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT a.id FROM Author a " +
+                                             "JOIN TableConnectOne tabl1 ON a.id = tabl1.author_id " +
+                                             "JOIN Title t ON tabl1.title_id = t.id " +
+                                             "WHERE t.id = :givenId " +
+                                             "AND t.publication_year BETWEEN :startDate AND :endDate " +
+                                             "ORDER BY a.id ASC");
+        query.setParameter("givenId", titleId);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
 
         List<Integer> authors = query.list();
 

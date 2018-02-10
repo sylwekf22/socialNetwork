@@ -11,11 +11,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GraphOperation {
-    private final GuavaGraphCreator guavaGraphCreator;
 
-    public GraphOperation() {
-        guavaGraphCreator = new GuavaGraphCreator("data.csv");
-    }
+    public GraphOperation(){ }
 
     public int getNumberOfNodes(MutableValueGraph<String, String> graph){
         return graph.nodes().size();
@@ -106,12 +103,27 @@ public class GraphOperation {
         return isolatedNodes;
     }
 
-    public MutableValueGraph<String, String> removeIsolatedNodes(MutableValueGraph<String, String> graph){
+    public MutableValueGraph<String, String> removeIsolatedNodes(MutableValueGraph<String, String> graph, String fileName){
         List<String> listOfIsolatedNodes = getListOfIsolatedNodes(graph);
+        GuavaGraphCreator guavaGraphCreator = new GuavaGraphCreator(fileName);
         MutableValueGraph<String, String> graphWithoutIsolatedNodes = guavaGraphCreator.createGraphFromFile();
 
         listOfIsolatedNodes.forEach(graphWithoutIsolatedNodes::removeNode);
 
         return graphWithoutIsolatedNodes;
+    }
+
+    public MutableValueGraph<String, String> removeNodes(MutableValueGraph<String, String> graph, List<String> listOfNodes, String fileName){
+        List<String> listOfSortedNodes = getListOfSortedNodes(graph);
+
+        GuavaGraphCreator guavaGraphCreator = new GuavaGraphCreator(fileName);
+        MutableValueGraph<String, String> newGraph = guavaGraphCreator.createGraphFromFile();
+
+        for (String node : listOfSortedNodes) {
+            if (!listOfNodes.contains(node)) {
+                newGraph.removeNode(node);
+            }
+        }
+        return newGraph;
     }
 }

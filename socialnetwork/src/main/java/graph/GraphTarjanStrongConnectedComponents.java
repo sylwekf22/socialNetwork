@@ -16,13 +16,7 @@ public class GraphTarjanStrongConnectedComponents {
 
     private List<String> sortedListOfNodes;
 
-    public GraphTarjanStrongConnectedComponents(MutableValueGraph<String, String> graph) {
-        marked = new boolean[getNumberOfNodes(graph)];
-        stack = new Stack<>();
-        id = new int[getNumberOfNodes(graph)];
-        low = new int[getNumberOfNodes(graph)];
-
-        sortedListOfNodes = getListOfSortedNodes(graph);
+    public GraphTarjanStrongConnectedComponents() {
     }
 
     public void doDepthFirstSearch(MutableValueGraph<String, String> graph, String startNode) {
@@ -54,6 +48,13 @@ public class GraphTarjanStrongConnectedComponents {
     }
 
     public void countStrongConnectedComponents(MutableValueGraph<String, String> graph){
+        marked = new boolean[getNumberOfNodes(graph)];
+        stack = new Stack<>();
+        id = new int[getNumberOfNodes(graph)];
+        low = new int[getNumberOfNodes(graph)];
+
+        sortedListOfNodes = getListOfSortedNodes(graph);
+
         for (String node : getListOfSortedNodes(graph)) {
             if (!marked[getIndexOfNode(node)]) {
                 doDepthFirstSearch(graph, node);

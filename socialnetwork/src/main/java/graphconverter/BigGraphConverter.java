@@ -18,7 +18,6 @@ public class BigGraphConverter extends GraphConverter{
 
         for (Integer author: authors){
             List<Integer> titles = authorsTitlesHibernate.getTitlesGivingAuthor(author);
-
             saveAuthorsTitles(graph, author, titles);
         }
         return graph;

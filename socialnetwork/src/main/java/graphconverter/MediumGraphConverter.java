@@ -18,7 +18,6 @@ public class MediumGraphConverter extends GraphConverter{
 
         for (Integer author: authors){
             List<Integer> titles = authorsTitlesHibernate.getTitlesGivingAuthor(author);
-
             saveAuthorsTitles(graph, author, titles);
         }
         return graph;
@@ -34,7 +33,6 @@ public class MediumGraphConverter extends GraphConverter{
                 saveConnectionBetweenAuthorTitleAndCoAuthors(graph, author, title, coAuthorsSet);
             } else if (coAuthorsSet.contains(author)) {
                 coAuthorsSet.remove(author);
-
                 saveConnectionBetweenAuthorTitleAndCoAuthors(graph, author, title, coAuthorsSet);
             }else{
                 saveConnectionBetweenAuthorTitleAndCoAuthors(graph, author, title, coAuthorsSet);

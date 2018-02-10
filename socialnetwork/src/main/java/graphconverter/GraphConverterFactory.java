@@ -8,8 +8,10 @@ public class GraphConverterFactory {
             return new LittleGraphConverter();
         } else if (graphConverterClass.isInstance(MediumGraphConverter.class)) {
             return new MediumGraphConverter();
-        }else {
+        }else if (graphConverterClass.isInstance(BigGraphConverter.class)){
             return new BigGraphConverter();
+        }else{
+            return new FiveYearPeriodGraphConverter("", "");
         }
     }
 }
