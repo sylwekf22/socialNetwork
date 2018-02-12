@@ -88,6 +88,23 @@ public class CSVWriter {
         }
     }
 
+    public void createHeaders(FileWriter fileWriter) throws IOException {
+
+        fileWriter.append("source node").append(",");
+        fileWriter.append("target node").append(",");
+        fileWriter.append("path size").append("\n");
+    }
+
+    public void saveNodePaths(FileWriter fileWriter, String sourcrNode,  List<String> targetNodes, List<Integer> nodesPathSize) throws IOException {
+
+        for(int i = 0; i < targetNodes.size(); i++) {
+            fileWriter.append(sourcrNode).append(",");
+            fileWriter.append(targetNodes.get(i)).append(",");
+            fileWriter.append(nodesPathSize.get(i).toString()).append("\n");
+        }
+        fileWriter.flush();
+    }
+
     public void savAdjacencyMatrixToTXT(FileWriter writer, List<Set<String>> adjencyList, Set<String> nodes) throws IOException {
 
         int nodeSize = nodes.size();

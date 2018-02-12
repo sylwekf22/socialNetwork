@@ -164,6 +164,41 @@ public class GraphConnectedComponents {
         return mapOfComponentsLength;
     }
 
+    public List<String> findTheBiggestConnectedComponentsList(){
+        int numberOfConnectedComponents = getCount();
+        List<String> maxSubGraphList = null;
+        int max = 0;
+        for (int i = 0; i < numberOfConnectedComponents; i++) {
+            if (components[i].size() > max) {
+                max = components[i].size();
+                maxSubGraphList =  components[i];
+            }
+        }
+        return maxSubGraphList;
+    }
+
+    public MutableValueGraph<String, String> calculateMaxSubGraph(MutableValueGraph<String, String> graph, List<String> maxSubGraphList){
+        Set<String> graphVertex = graph.nodes();
+
+        Iterator<String> vertexIterator = graphVertex.iterator();
+        List<String> vertexToDelete = new LinkedList<>();
+        String vertex;
+        while(vertexIterator.hasNext()){
+            vertex = vertexIterator.next();
+            if (!maxSubGraphList.contains(vertex)){
+                vertexToDelete.add(vertex);
+            }
+        }
+        removeVertex(vertexToDelete, graph);
+        return graph;
+    }
+
+    private void removeVertex(List<String> vertexes, MutableValueGraph<String, String> graph){
+        for(String vertex : vertexes){
+            graph.removeNode(vertex);
+        }
+    }
+
     public int[] getId() {
         return id;
     }

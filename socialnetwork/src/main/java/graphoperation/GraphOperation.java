@@ -65,6 +65,19 @@ public class GraphOperation {
         return graphMeasurer.getRadius();
     }
 
+    public void saveNodePths(MutableValueGraph<String, String> graph) throws IOException {
+
+        GraphConnectedComponents connectedComponents = new GraphConnectedComponents();
+        connectedComponents.countConnectedComponents(graph);
+        connectedComponents.computeListOfConnectedComponents();
+        List<String> maxSubGraphList = connectedComponents.findTheBiggestConnectedComponentsList();
+        MutableValueGraph<String, String> maxSubGraph = connectedComponents.calculateMaxSubGraph(graph, maxSubGraphList);
+
+        GraphShortestPath graphShortestPath = new GraphShortestPath(maxSubGraph);
+        graphShortestPath.calculateShortestPath();
+    }
+
+
     public void saveAdjacencyMatrix(MutableValueGraph<String, String> graph) throws IOException {
         Set<String> nodes = graph.nodes();
         int amountOfNodes = nodes.size();
