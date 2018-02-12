@@ -1,10 +1,10 @@
 package dto;
 
-import pojo.Title;
+import dao.Title;
 
-public class TitleDtoConverter {
+public class TitleMapper {
 
-    public TitleDtoConverter() {
+    public TitleMapper() {
     }
 
     public static TitleDto convert(Title title){

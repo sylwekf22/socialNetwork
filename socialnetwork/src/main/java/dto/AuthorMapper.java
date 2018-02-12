@@ -1,10 +1,10 @@
 package dto;
 
-import pojo.Author;
+import dao.Author;
 
-public class AuthorDtoConverter {
+public class AuthorMapper {
 
-    public AuthorDtoConverter() {
+    public AuthorMapper() {
     }
 
     public static AuthorDto convert(Author author){

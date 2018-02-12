@@ -1,4 +1,4 @@
-package pojo;
+package dao;
 
 import org.hibernate.annotations.Type;
 

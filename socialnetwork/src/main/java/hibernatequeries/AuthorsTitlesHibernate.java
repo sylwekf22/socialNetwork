@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import pojo.Author;
-import pojo.TableConnectOne;
-import pojo.Title;
+import dao.Author;
+import dao.TableConnectOne;
+import dao.Title;
 
 import java.util.*;
 

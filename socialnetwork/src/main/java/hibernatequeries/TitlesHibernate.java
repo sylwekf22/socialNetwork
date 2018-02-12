@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import pojo.Title;
+import dao.Title;
 
 import java.util.LinkedList;
 import java.util.List;

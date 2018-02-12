@@ -1,4 +1,4 @@
-package pojo;
+package dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
