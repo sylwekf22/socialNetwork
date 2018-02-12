@@ -1,8 +1,8 @@
-package graph;
+package graphoperation;
 
 import com.google.common.graph.*;
-import graphcreator.GuavaGraphCreator;
-import csv.CSVWriter;
+import creator.GuavaGraphCreator;
+import writer.CSVWriter;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.shortestpath.GraphMeasurer;
 import java.io.FileWriter;
@@ -77,7 +77,7 @@ public class GraphOperation {
         csvWriter.savAdjacencyMatrixToTXT(new FileWriter("adjacencyMatrix.txt"), adjacencySet, nodes);
     }
 
-    public Map<String, Set<String>> getAdjacencyList(MutableValueGraph<String, String> graph){
+    public Map<String, Set<String>> getAdjacencyMap(MutableValueGraph<String, String> graph){
         Map<String, Set<String>> adjacencyList = new HashMap<>();
 
         for(String node : graph.nodes()){

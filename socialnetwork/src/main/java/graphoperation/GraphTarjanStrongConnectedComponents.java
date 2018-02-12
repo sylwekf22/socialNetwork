@@ -1,4 +1,4 @@
-package graph;
+package graphoperation;
 
 import com.google.common.graph.MutableValueGraph;
 

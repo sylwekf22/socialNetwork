@@ -1,11 +1,8 @@
-package graph;
+package graphoperation;
 
 import com.google.common.graph.MutableValueGraph;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GraphConnectedComponents {
@@ -87,11 +84,51 @@ public class GraphConnectedComponents {
         return max;
     }
 
+    public int findTheBiggestConnectedComponentFromMap(Map<String, Set<String>> mapOfConnectedComponents){
+        int max = 0;
+        for (Set<String> connectedComponent : mapOfConnectedComponents.values()) {
+            if (connectedComponent.size() > max) {
+                max = connectedComponent.size();
+            }
+        }
+        return max;
+    }
+
+    public int findTheBiggestConnectedComponents(int theBiggestConnectedComponent){
+        int theBiggestConnectedComponentCounter = 0;
+        for (int i = 0; i < components.length; i++) {
+            if (components[i].size() == theBiggestConnectedComponent) {
+                theBiggestConnectedComponentCounter++;
+            }
+        }
+        return theBiggestConnectedComponentCounter;
+    }
+
+    public int findTheBiggestConnectedComponentsFromMap(int theBiggestConnectedComponent, Map<String, Set<String>> mapOfConnectedComponents){
+        int theBiggestConnectedComponentCounter = 0;
+        for (Set<String> connectedComponent : mapOfConnectedComponents.values()) {
+            if (connectedComponent.size() ==  theBiggestConnectedComponent) {
+                theBiggestConnectedComponentCounter++;
+            }
+        }
+        return theBiggestConnectedComponentCounter;
+    }
+
     public int findTheSmallestConnectedComponent(){
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < components.length; i++) {
             if (components[i].size() < min) {
                 min = components[i].size();
+            }
+        }
+        return min;
+    }
+
+    public int findTheSmallestConnectedComponentFromMap(Map<String, Set<String>> mapOfConnectedComponents){
+        int min = Integer.MAX_VALUE;
+        for (Set<String> connectedComponent : mapOfConnectedComponents.values()) {
+            if (connectedComponent.size() <  min) {
+                min = connectedComponent.size();
             }
         }
         return min;

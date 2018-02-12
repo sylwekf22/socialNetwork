@@ -14,14 +14,10 @@
 /src/main/resources/hibernate.cfg.xml
 
 ### Data CSV file ###
-/src/main/resources/data.csv
-/src/main/resources/bid_data.csv
-/src/main/resources/mid_data.csv
+/src/main/resources/graphs/
 
-### Data CSV file per five-year period
-/src/main/resources/1981-1985.csv
-/src/main/resources/1981-1990.csv
-/src/main/resources/1981-1995.csv
-/src/main/resources/1981-2000.csv
-/src/main/resources/1981-2005.csv
-/src/main/resources/1981-2010.csv
+### Connected Components ###
+/src/main/resources/connectedcomponents/
+
+### Views ###
+/src/main/resources/views/
