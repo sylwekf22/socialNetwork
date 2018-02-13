@@ -19,13 +19,13 @@ import java.util.Set;
 
 public class GeneralStatisticsController {
     public GeneralStatisticsController() {
-        guavaGraphCreator = new GuavaGraphCreator("data.csv");
+        guavaGraphCreator = new GuavaGraphCreator("general_graph.csv");
         graph = guavaGraphCreator.createGraphFromFile();
 
         graphOperation = new GraphOperation();
-        graphWithoutIsolatedNodes = graphOperation.removeIsolatedNodes(graph, "data.csv");
+        graphWithoutIsolatedNodes = graphOperation.removeIsolatedNodes(graph, "general_graph.csv");
 
-        guavaConnectedComponentsCreator = new GuavaConnectedComponentsCreator("isolated_data_connected_components.csv");
+        guavaConnectedComponentsCreator = new GuavaConnectedComponentsCreator("general_graph_without_isolated_nodes_connected_components.csv");
         connectedComponentsMap = guavaConnectedComponentsCreator.createConnectedComponentsMap();
 
         graphConnectedComponents = new GraphConnectedComponents();
