@@ -6,6 +6,7 @@ import dto.AdjacencyListDto;
 import graphoperation.GraphConnectedComponents;
 import graphoperation.GraphOperation;
 import creator.GuavaGraphCreator;
+import graphoperation.GraphShortestPath;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,11 +15,12 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import main.AdjacencyMatrix;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
 public class GeneralStatisticsController {
-    public GeneralStatisticsController() {
+    public GeneralStatisticsController() throws IOException {
         guavaGraphCreator = new GuavaGraphCreator("general_graph.csv");
         graph = guavaGraphCreator.createGraphFromFile();
 
@@ -29,6 +31,9 @@ public class GeneralStatisticsController {
         connectedComponentsMap = guavaConnectedComponentsCreator.createConnectedComponentsMap();
 
         graphConnectedComponents = new GraphConnectedComponents();
+
+        graphShortestPath = new GraphShortestPath(graphWithoutIsolatedNodes);
+        graphShortestPath.calculateShortestPath();
     }
 
     @FXML
@@ -48,7 +53,6 @@ public class GeneralStatisticsController {
 
         numberTheGreatestComponentValueLabel.
                 setText(String.valueOf(graphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, connectedComponentsMap)));
-
 
         fillAdjacencyList();
         setAdjacencyTableByItems();
@@ -195,6 +199,7 @@ public class GeneralStatisticsController {
 
     private GraphOperation graphOperation;
     private GraphConnectedComponents graphConnectedComponents;
+    private GraphShortestPath graphShortestPath;
 
     private Map<String, Set<String>> connectedComponentsMap;
 
