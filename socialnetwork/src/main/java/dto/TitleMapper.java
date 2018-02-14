@@ -2,6 +2,8 @@ package dto;
 
 import dao.Title;
 
+// Mapper z dao do dto
+
 public class TitleMapper {
 
     public TitleMapper() {

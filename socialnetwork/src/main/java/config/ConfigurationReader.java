@@ -10,18 +10,22 @@ import java.util.stream.Stream;
 public class ConfigurationReader {
     private final String fileName;
 
+    // Zwykły konstruktor bezargumentowy
     public ConfigurationReader() {
         this.fileName = "databaseconfig.txt";
     }
 
+    // Konstruktor z parametrem określającym nazwę pliku
     public ConfigurationReader(String fileName) {
         this.fileName = fileName;
     }
 
+    // Zwykły get
     public String getFileName() {
         return fileName;
     }
 
+    // Pobierz słowo kluczowe z pliku databaseconfig.txt
     public String getKeyWord(String keyWord){
         Stream<String> lines = null;
 
@@ -47,10 +51,12 @@ public class ConfigurationReader {
         return split[1];
     }
 
+    // Pobranie ścieżki projektu
     private String getProjectPath(){
         return new File("").getAbsolutePath();
     }
 
+    // Pobranie ścieżki pliku databaseconfig.txt
     private String getFilePath(){
         return getProjectPath() + "//" + fileName;
     }

@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Set;
 
+// Klasa służąca do w tabeli GUI danych na temat listy sąsiedztwa
+
 public class AdjacencyListDto {
     private SimpleStringProperty node;
     private SimpleStringProperty adjacencyNodes;

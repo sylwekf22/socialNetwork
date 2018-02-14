@@ -3,6 +3,7 @@ package config;
 import java.sql.*;
 
 public class DatabaseConnectionHandler {
+    // Nudy
     private String sslOption = "?useSSL=false";
     private String timeZoneOption = "useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
@@ -16,6 +17,8 @@ public class DatabaseConnectionHandler {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    // Konstruktor, w którym pobieramy za pomocą słów kluczowych dane na temat użytkownika
+    // hasła i nazwy bazy danych
     public DatabaseConnectionHandler() {
         this.configurationReader = new ConfigurationReader();
 
@@ -30,6 +33,7 @@ public class DatabaseConnectionHandler {
         setUpConnection();
     }
 
+    // W tym konstruktorze podajemy ConfigurationReader do czytania słów kluczowych
     public DatabaseConnectionHandler(ConfigurationReader configurationReader) {
         this.configurationReader = configurationReader;
 
@@ -44,12 +48,14 @@ public class DatabaseConnectionHandler {
         setUpConnection();
     }
 
+    // Metoda do odpytywania bazy danych
     public ResultSet getData(String sqlQuery) throws SQLException {
         this.preparedStatement = connection.prepareStatement(sqlQuery);
         this.resultSet = preparedStatement.executeQuery();
         return resultSet;
     }
 
+    // Rozpoczęcie połączenia z bazą danych
     private void setUpConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -59,6 +65,7 @@ public class DatabaseConnectionHandler {
         }
     }
 
+    // zamknięcie połączenia
     public void closeEnvironment(){
         try {
             resultSet.close();

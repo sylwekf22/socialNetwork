@@ -10,6 +10,8 @@ import dao.Author;
 import java.util.LinkedList;
 import java.util.List;
 
+// Klasa z zapytaniami za pomocą Hibernate
+
 public class AuthorsNodesHibernate {
     private final SessionFactory sessionFactory;
 

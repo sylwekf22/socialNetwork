@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+// klasa służąca do zapisywania danych do pliku CSV
+
 public class CSVWriter {
 
     private final char separator;

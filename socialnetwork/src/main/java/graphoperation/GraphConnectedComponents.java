@@ -5,6 +5,8 @@ import com.google.common.graph.MutableValueGraph;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// implementacja do obliczania spójnych składowych
+
 public class GraphConnectedComponents {
 
     private boolean[] marked;
@@ -17,6 +19,7 @@ public class GraphConnectedComponents {
     public GraphConnectedComponents() {
     }
 
+    // przeszukiwanie w głąb grafu
     public void doDepthFirstSearch(MutableValueGraph<String, String> graph, String startNode) {
         marked[getIndexOfNode(startNode)] = true;
         id[getIndexOfNode(startNode)] = count;
@@ -29,6 +32,7 @@ public class GraphConnectedComponents {
         }
     }
 
+    // główna metoda obliczająca spójne składowe grafu za pomocą przeszukiwania w głąb
     public void countConnectedComponents(MutableValueGraph<String, String> graph){
         marked = new boolean[getNumberOfNodes(graph)];
         id = new int[getNumberOfNodes(graph)];
@@ -55,6 +59,7 @@ public class GraphConnectedComponents {
         return sortedListOfNodes.indexOf(node);
     }
 
+    // tworzenie tablicy list spójnych componentów
     public void computeListOfConnectedComponents(){
         int numberOfConnectedComponents = getCount();
         components = new List[numberOfConnectedComponents];

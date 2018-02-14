@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+// Reprezentacja tabeli pośredniczącej za pomocą hibernate
+
 @Entity
 @Table(name = "tab_lacz1")
 public class TableConnectOne implements Serializable{

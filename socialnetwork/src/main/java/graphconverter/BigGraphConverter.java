@@ -5,12 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+// klasa tworzy w zmiennej List<List<String>> wstępną reprezentację grafu
+// gdzie następnie zostanie wykorzystana do jednorazowego zapisania do pliku CSV
+
 public class BigGraphConverter extends GraphConverter{
 
     public BigGraphConverter() {
         super();
     }
 
+    // Metoda tworzy graf ale w zmiennej
     @Override
     public List<List<String>> convertGraphToList() {
         List<List<String>> graph = new LinkedList<>();
@@ -23,6 +27,7 @@ public class BigGraphConverter extends GraphConverter{
         return graph;
     }
 
+    // dwie następne metody to metody "rozbite" z potężnego fora
     @Override
     protected void saveAuthorsTitles(List<List<String>> graph, Integer author, List<Integer> titles) {
         for (Integer title: titles){

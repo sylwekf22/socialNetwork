@@ -7,6 +7,8 @@ import hibernatequeries.TitlesHibernate;
 import java.util.List;
 import java.util.Set;
 
+// klasa abstrakcyjna z deklaracjami metod
+
 public abstract class GraphConverter {
     AuthorsNodesHibernate authorsNodesHibernate;
     AuthorsTitlesHibernate authorsTitlesHibernate;

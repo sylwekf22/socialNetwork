@@ -1,6 +1,8 @@
 package dto;
 
 
+// Znowu głupia klasa dto
+
 import java.util.Date;
 
 public class TitleDto{

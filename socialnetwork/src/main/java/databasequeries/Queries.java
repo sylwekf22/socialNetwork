@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Misz-masz jakieś głupie pierwsze zapytania Maćka
 public class Queries {
 
     private DatabaseConnectionHandler databaseConnectionHandler;

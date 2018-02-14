@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
+// Klasa odpowiadają tabeli tytul z bazy danych
+
 @Entity
 @Table(name = "tytul")
 public class Title implements Serializable {

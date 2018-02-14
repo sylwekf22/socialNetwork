@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+// klasa jak poprzednia służy do zapisania grafu w zmiennej List<List<String>>
+
 public class FiveYearPeriodGraphConverter extends GraphConverter{
 
     private String startDate;

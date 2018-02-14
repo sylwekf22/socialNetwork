@@ -3,6 +3,8 @@ package dto;
 
 import java.util.Date;
 
+// Klasa dto chyba nigdzie nie jest wykorzystywana
+
 public class AuthorDto {
 
     private Integer id;

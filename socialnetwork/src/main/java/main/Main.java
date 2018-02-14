@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// zwykłe klasy uruchomieniowe
+
 public class Main extends Application {
 
     @Override

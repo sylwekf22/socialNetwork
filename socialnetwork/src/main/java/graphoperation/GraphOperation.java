@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// operacje wykonywane głównie na grafie MutableValueGraph<String, String> graph
+
 public class GraphOperation {
 
     public GraphOperation(){ }
