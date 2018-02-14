@@ -31,13 +31,13 @@ public class GraphShortestPath {
         nodeList = getListOfNodes();
 
     }
-
+    // obliczanie ścieżek z wykorzystaniem algorytmu przeszukiwania grafu wszerz podejście rekurencyjne
     public int breadthFirstSearchRecursion(Node currentNode) {
 
         for (String childNodeName : maxSubGraph.adjacentNodes(currentNode.name)) {
             if (!marked[getIndexOfNode(childNodeName)]) {
-                marked[getIndexOfNode(childNodeName)] = true;
-                Node node = new Node(childNodeName, currentNode.pathSize + 1);
+                marked[getIndexOfNode(childNodeName)] = true;                         // ustawienie wierzchołka jako odwiedzony
+                Node node = new Node(childNodeName, currentNode.pathSize + 1); // ustawienie ścieżki wierzcholka-dziecka jako ta co wierzcholka-rodzica + 1
                 queue.add(node);
             }
         }
@@ -53,25 +53,25 @@ public class GraphShortestPath {
         }
         return breadthFirstSearchRecursion(queue.poll()) + currentNode.pathSize;
     }
-
+    // obliczanie ścieżek z wykorzystaniem algorytmu przeszukiwania grafu wszerz podejście itracyjne
     public int breadthFirstSearchIteration(Node rootNode) {
         queue.add(rootNode);
-        marked[getIndexOfNode(rootNode.name)] = true;
+        marked[getIndexOfNode(rootNode.name)] = true; // ustawienie wierzchołka jak odwieczony
         int distance = 0;
         while (!queue.isEmpty()) {
             Node parent = queue.remove();
             Node child;
-            distance += parent.pathSize;
+            distance += parent.pathSize;            // dodanie odległości wierzchołka od wierzchołka roota
 
             nodePathSize.add(parent.pathSize);
-            targetNodeList.add(parent.name);
+            targetNodeList.add(parent.name);        // dodanie wierzchołka do listy wierzhołków wychodzących od roota
             if (tempDiameter < parent.pathSize) {
                 tempDiameter = parent.pathSize;
             }
             for (String childNodeName : maxSubGraph.adjacentNodes(parent.name)) {
                 if (!marked[getIndexOfNode(childNodeName)]) {
-                    child = new Node(childNodeName, parent.pathSize + 1);
-                    marked[getIndexOfNode(childNodeName)] = true;
+                    child = new Node(childNodeName, parent.pathSize + 1); // ustawienie ścieżki wierzcholka-dziecka jako ta co wierzcholka-rodzica + 1
+                    marked[getIndexOfNode(childNodeName)] = true;                 // ustawienie wierzchołka jako odwiedzony
                     queue.add(child);
                 }
             }
@@ -92,11 +92,11 @@ public class GraphShortestPath {
         for (String startNode : nodeSet) {
             nodePathSize = new ArrayList<>();
             targetNodeList = new ArrayList<>();
-            marked[getIndexOfNode(startNode)] = true;
+            marked[getIndexOfNode(startNode)] = true;           // ustawienie wierzchołka rodzica jako odwiedzony
             calculatedNodes++;
 //            currentCalculatedDistance = breadthFirstSearchRecursion(new Node(startNode, 0));
             currentCalculatedDistance = breadthFirstSearchIteration(new Node(startNode, 0));
-            updatePathDistanceProperty(currentCalculatedDistance, nodeSet.size());
+            updatePathDistanceProperty(currentCalculatedDistance, nodeSet.size());  // aktualizacja danycj takich jak: średnica, promień, średnia odległość
             csvWriter.saveNodePaths(fileWriter, startNode, targetNodeList, nodePathSize);
             resetMarkings();
         }

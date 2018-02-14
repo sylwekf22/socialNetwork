@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-// Reprezentacja tabeli pośredniczącej za pomocą hibernate
+// Encja odpowiadająca tabeli tab_lacz1 z bazy danych
 
 @Entity
 @Table(name = "tab_lacz1")

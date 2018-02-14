@@ -11,6 +11,7 @@ import dao.Title;
 
 import java.util.*;
 
+// Klasa obsługująca zapytania pomiędzy tabelami autorzy, tab_lacz1 i tytul
 public class AuthorsTitlesHibernate {
     private final SessionFactory sessionFactory;
 
@@ -23,6 +24,7 @@ public class AuthorsTitlesHibernate {
                 .buildSessionFactory();
     }
 
+    // Pobierz mapę autorów i tytułów
     public Map<Integer, Integer> getAuthorsAndTitles(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -49,6 +51,7 @@ public class AuthorsTitlesHibernate {
         return authorsTitles;
     }
 
+    // Pobierz tytuły danego autora
     public List<Integer> getTitlesGivingAuthor(Integer authorId){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -68,6 +71,7 @@ public class AuthorsTitlesHibernate {
         return titles;
     }
 
+    // Pobierz autorów danego autorów
     public List<Integer> getAuthorsGivingTitle(Integer titleId){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -87,6 +91,7 @@ public class AuthorsTitlesHibernate {
         return authors;
     }
 
+    // Pobierz autorów pomiędzy dwoma datami
     public List<Integer> getAuthorsIdBetweenTwoPublicationYears(String startDate, String endDate){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -108,6 +113,7 @@ public class AuthorsTitlesHibernate {
         return authors;
     }
 
+    // Pobierz tytuły pomiędzy dwoma datami
     public List<Integer> getTitlesGivingAuthorAndBetweenTwoPublicationYears(Integer authorId, String startDate, String endDate){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -131,6 +137,7 @@ public class AuthorsTitlesHibernate {
         return titles;
     }
 
+    // Pobierz autorów danego tytułu pomiędzy dwoma datami
     public List<Integer> getAuthorsGivingTitleAndBetweenTwoPublicationYears(Integer titleId, String startDate, String endDate){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();

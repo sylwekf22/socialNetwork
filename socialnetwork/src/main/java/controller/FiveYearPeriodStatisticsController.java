@@ -13,11 +13,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+// Kontroler wyników co 5 lat grafu
 public class FiveYearPeriodStatisticsController {
-    public FiveYearPeriodStatisticsController() {
+    public FiveYearPeriodStatisticsController() throws IOException {
         setFirstData();
         setSecondData();
         setThirdData();
@@ -26,7 +29,8 @@ public class FiveYearPeriodStatisticsController {
         setSixthData();
     }
 
-    private void setFirstData() {
+    // Metody ustawiające zmiennej w kontrolerze
+    private void setFirstData() throws IOException {
         firstGuavaGraphCreator = new GuavaGraphCreator("1981-1985.csv");
         firstGraph = firstGuavaGraphCreator.createGraphFromFile();
 
@@ -38,11 +42,17 @@ public class FiveYearPeriodStatisticsController {
 
         firstGraphConnectedComponents = new GraphConnectedComponents();
 
-//        firstGraphShortestPath = new GraphShortestPath(firstGraphWithoutIsolatedNodes);
-//        firstGraphShortestPath.calculateShortestPath();
+        firstTheBiggestConnectedComponent = firstGraphConnectedComponents.getTheBiggestConnectedComponent(firstConnectedComponentsMap);
+
+        MutableValueGraph<String, String> mutableValueGraph = firstGraphConnectedComponents.
+                calculateMaxSubGraph(firstGraphWithoutIsolatedNodes, firstTheBiggestConnectedComponent, "1981-1985.csv");
+
+        firstGraphShortestPath = new GraphShortestPath(mutableValueGraph);
+        firstGraphShortestPath.calculateShortestPath();
+        firstGraphOperation.saveNodePths(mutableValueGraph, "1981-1985.csv");
     }
 
-    private void setSecondData() {
+    private void setSecondData() throws IOException {
         secondGuavaGraphCreator = new GuavaGraphCreator("1981-1990.csv");
         secondGraph = secondGuavaGraphCreator.createGraphFromFile();
 
@@ -54,11 +64,17 @@ public class FiveYearPeriodStatisticsController {
 
         secondGraphConnectedComponents = new GraphConnectedComponents();
 
-//        secondGraphShortestPath = new GraphShortestPath(secondGraphWithoutIsolatedNodes);
-//        secondGraphShortestPath.calculateShortestPath();
+        secondTheBiggestConnectedComponent = secondGraphConnectedComponents.getTheBiggestConnectedComponent(secondConnectedComponentsMap);
+
+        MutableValueGraph<String, String> mutableValueGraph = secondGraphConnectedComponents.
+                calculateMaxSubGraph(secondGraphWithoutIsolatedNodes, secondTheBiggestConnectedComponent, "1981-1990.csv");
+
+        secondGraphShortestPath = new GraphShortestPath(mutableValueGraph);
+        secondGraphShortestPath.calculateShortestPath();
+        secondGraphOperation.saveNodePths(mutableValueGraph, "1981-1990.csv");
     }
 
-    private void setThirdData() {
+    private void setThirdData() throws IOException {
         thirdGuavaGraphCreator = new GuavaGraphCreator("1981-1995.csv");
         thirdGraph = thirdGuavaGraphCreator.createGraphFromFile();
 
@@ -70,11 +86,17 @@ public class FiveYearPeriodStatisticsController {
 
         thirdGraphConnectedComponents = new GraphConnectedComponents();
 
-//        thirdGraphShortestPath = new GraphShortestPath(thirdGraphWithoutIsolatedNodes);
-//        thirdGraphShortestPath.calculateShortestPath();
+        thirdTheBiggestConnectedComponent = thirdGraphConnectedComponents.getTheBiggestConnectedComponent(thirdConnectedComponentsMap);
+
+        MutableValueGraph<String, String> mutableValueGraph = thirdGraphConnectedComponents.
+                calculateMaxSubGraph(thirdGraphWithoutIsolatedNodes, thirdTheBiggestConnectedComponent, "1981-1995.csv");
+
+        thirdGraphShortestPath = new GraphShortestPath(mutableValueGraph);
+        thirdGraphShortestPath.calculateShortestPath();
+        thirdGraphOperation.saveNodePths(mutableValueGraph, "1981-1995.csv");
     }
 
-    private void setFourthData() {
+    private void setFourthData() throws IOException {
         fourthGuavaGraphCreator = new GuavaGraphCreator("1981-2000.csv");
         fourthGraph = fourthGuavaGraphCreator.createGraphFromFile();
 
@@ -86,8 +108,14 @@ public class FiveYearPeriodStatisticsController {
 
         fourthGraphConnectedComponents = new GraphConnectedComponents();
 
-//        fourthGraphShortestPath = new GraphShortestPath(fourthGraphWithoutIsolatedNodes);
+//        fourthTheBiggestConnectedComponent = fourthGraphConnectedComponents.getTheBiggestConnectedComponent(fourthConnectedComponentsMap);
+//
+//        MutableValueGraph<String, String> mutableValueGraph = fourthGraphConnectedComponents.
+//                calculateMaxSubGraph(fourthGraphWithoutIsolatedNodes, fourthTheBiggestConnectedComponent, "1981-2000.csv");
+//
+//        fourthGraphShortestPath = new GraphShortestPath(mutableValueGraph);
 //        fourthGraphShortestPath.calculateShortestPath();
+//        fourthGraphOperation.saveNodePths(mutableValueGraph, "1981-2000.csv");
     }
 
     private void setFifthData() {
@@ -132,6 +160,7 @@ public class FiveYearPeriodStatisticsController {
         initSixthData();
     }
 
+    // Metody inicjalizujące dane w kontrolerze
     private void initFirstData() {
         firstNumberOfNodesValueLabel.setText(String.valueOf(firstGraphOperation.getNumberOfNodes(firstGraph)));
         firstNumberOfEdgesValueLabel.setText(String.valueOf(firstGraphOperation.getNumberOfEdges(firstGraph)));
@@ -148,6 +177,11 @@ public class FiveYearPeriodStatisticsController {
 
         firstNumberTheGreatestComponentValueLabel.
                 setText(String.valueOf(firstGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, firstConnectedComponentsMap)));
+
+        // tu się coś dzieje
+        firstAverageDistanceBetweenNodesValueLabel.setText(String.valueOf(firstGraphShortestPath.getAverageNodeDistance()));
+        firstDiameterOfComonentValueLabel.setText(String.valueOf(firstGraphShortestPath.getGraphDiameter()));
+        firstRadiousOfComponentValueLabel.setText(String.valueOf(firstGraphShortestPath.getGraphRadius()));
 
         fillFirstAdjacencyList();
         setFirstAdjacencyTableByItems();
@@ -173,6 +207,11 @@ public class FiveYearPeriodStatisticsController {
         secondNumberTheGreatestComponentValueLabel.
                 setText(String.valueOf(secondGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, secondConnectedComponentsMap)));
 
+        // tu się coś dzieje
+        secondAverageDistanceBetweenNodesValueLabel.setText(String.valueOf(secondGraphShortestPath.getAverageNodeDistance()));
+        secondDiameterOfComonentValueLabel.setText(String.valueOf(secondGraphShortestPath.getGraphDiameter()));
+        secondRadiousOfComponentValueLabel.setText(String.valueOf(secondGraphShortestPath.getGraphRadius()));
+
         fillSecondAdjacencyList();
         setSecondAdjacencyTableByItems();
 
@@ -197,6 +236,12 @@ public class FiveYearPeriodStatisticsController {
         thirdNumberTheGreatestComponentValueLabel.
                 setText(String.valueOf(thirdGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, thirdConnectedComponentsMap)));
 
+
+        // tu się coś dzieje
+        thirdAverageDistanceBetweenNodesValueLabel.setText(String.valueOf(thirdGraphShortestPath.getAverageNodeDistance()));
+        thirdDiameterOfComonentValueLabel.setText(String.valueOf(thirdGraphShortestPath.getGraphDiameter()));
+        thirdRadiousOfComponentValueLabel.setText(String.valueOf(thirdGraphShortestPath.getGraphRadius()));
+
         fillThirdAdjacencyList();
         setThirdAdjacencyTableByItems();
 
@@ -220,6 +265,11 @@ public class FiveYearPeriodStatisticsController {
 
         fourthNumberTheGreatestComponentValueLabel.
                 setText(String.valueOf(fourthGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, fourthConnectedComponentsMap)));
+
+//        // tu się coś dzieje
+//        fourthAverageDistanceBetweenNodesValueLabel.setText(String.valueOf(fourthGraphShortestPath.getAverageNodeDistance()));
+//        fourthDiameterOfComonentValueLabel.setText(String.valueOf(fourthGraphShortestPath.getGraphDiameter()));
+//        fourthRadiousOfComponentValueLabel.setText(String.valueOf(fourthGraphShortestPath.getGraphRadius()));
 
         fillFourthAdjacencyList();
         setFourthAdjacencyTableByItems();
@@ -276,6 +326,7 @@ public class FiveYearPeriodStatisticsController {
         sixthAdjacencyNodesTableColumn.setCellValueFactory(adjacencyNode -> adjacencyNode.getValue().getAdjacencyNodesProperty());
     }
 
+    // Wypełnienie Macierzy sąsiedztwa
     private void fillFirstAdjacencyList(){
         Map<String, Set<String>> adjacencyMap = firstGraphOperation.getAdjacencyMap(firstGraphWithoutIsolatedNodes);
         for (Map.Entry<String, Set<String>> row : adjacencyMap.entrySet()) {
@@ -348,6 +399,7 @@ public class FiveYearPeriodStatisticsController {
         sixthTableView.setItems(sixthAdjacencyList);
     }
 
+    // Metoda do wypisywania Alterów
     public void printAlert(String title, String headerText, String contextText, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -356,6 +408,10 @@ public class FiveYearPeriodStatisticsController {
         alert.showAndWait();
     }
 
+    @FXML
+    private void openFirstAdjacencyMatrix(){
+
+    }
     // First tab
     @FXML
     private Tab firstTab;
@@ -760,6 +816,8 @@ public class FiveYearPeriodStatisticsController {
 
     private ObservableList<AdjacencyListDto> firstAdjacencyList = FXCollections.observableArrayList();
 
+    private List firstTheBiggestConnectedComponent = null;
+
     // Second
     private GuavaGraphCreator secondGuavaGraphCreator;
     private GuavaConnectedComponentsCreator secondGuavaConnectedComponentsCreator;
@@ -774,6 +832,8 @@ public class FiveYearPeriodStatisticsController {
     private MutableValueGraph<String, String> secondGraphWithoutIsolatedNodes;
 
     private ObservableList<AdjacencyListDto> secondAdjacencyList = FXCollections.observableArrayList();
+
+    private List secondTheBiggestConnectedComponent = null;
 
     // Third
     private GuavaGraphCreator thirdGuavaGraphCreator;
@@ -790,6 +850,8 @@ public class FiveYearPeriodStatisticsController {
 
     private ObservableList<AdjacencyListDto> thirdAdjacencyList = FXCollections.observableArrayList();
 
+    private List thirdTheBiggestConnectedComponent = null;
+
     // Fourth
     private GuavaGraphCreator fourthGuavaGraphCreator;
     private GuavaConnectedComponentsCreator fourthGuavaConnectedComponentsCreator;
@@ -804,6 +866,8 @@ public class FiveYearPeriodStatisticsController {
     private MutableValueGraph<String, String> fourthGraphWithoutIsolatedNodes;
 
     private ObservableList<AdjacencyListDto> fourthAdjacencyList = FXCollections.observableArrayList();
+
+    private List fourthTheBiggestConnectedComponent = null;
 
     // Fifth
     private GuavaGraphCreator fifthGuavaGraphCreator;

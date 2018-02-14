@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Date;
 
-// Zwykład encja odpowiadająca tabeli autorzy z bazy danych
+// Encja odpowiadająca tabeli autorzy z bazy danych
 
 @Entity
 @Table(name = "autorzy")

@@ -2,7 +2,7 @@ package dto;
 
 import dao.Author;
 
-// Mapper autora z dao do dto
+// Mapper tabeli autorzy z dao do dto
 
 public class AuthorMapper {
 

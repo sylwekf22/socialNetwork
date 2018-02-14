@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-// klasa jak poprzednia służy do zapisania grafu w zmiennej List<List<String>>
-
+// Klasa tworząca graf w postaci List<List<String>>
+// Za pomocą tej klasy stworzyć graf za pomocą biblioteki Guava z określonymi datami
 public class FiveYearPeriodGraphConverter extends GraphConverter{
 
     private String startDate;
@@ -18,6 +18,7 @@ public class FiveYearPeriodGraphConverter extends GraphConverter{
         this.endDate = endDate;
     }
 
+    // Konwertuje dane z dazy danych do postaci grafu List<List<String>>
     @Override
     public List<List<String>> convertGraphToList() {
         List<List<String>> graph = new LinkedList<>();
@@ -30,6 +31,7 @@ public class FiveYearPeriodGraphConverter extends GraphConverter{
         return graph;
     }
 
+    // Metoda zapisująca połączenie pomiędzy autorem, tytułem i współautorami
     @Override
     protected void saveAuthorsTitles(List<List<String>> graph, Integer author, List<Integer> titles) {
         for (Integer title: titles){
@@ -47,6 +49,7 @@ public class FiveYearPeriodGraphConverter extends GraphConverter{
         }
     }
 
+    // Metoda zapisująca połączenie pomiędzy autorem, tytułem i współautorami
     @Override
     protected void saveConnectionBetweenAuthorTitleAndCoAuthors(List<List<String>> graph, Integer author, Integer title, Set<Integer> coAuthorsSet) {
         for (Integer coAuthor : coAuthorsSet) {

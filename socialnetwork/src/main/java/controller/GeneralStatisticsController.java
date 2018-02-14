@@ -19,7 +19,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
+// Kontroler statystyk całego grafu
 public class GeneralStatisticsController {
+    // Konstruktor ustawiający dane wartości
     public GeneralStatisticsController() throws IOException {
         guavaGraphCreator = new GuavaGraphCreator("general_graph.csv");
         graph = guavaGraphCreator.createGraphFromFile();
@@ -32,10 +34,11 @@ public class GeneralStatisticsController {
 
         graphConnectedComponents = new GraphConnectedComponents();
 
-        graphShortestPath = new GraphShortestPath(graphWithoutIsolatedNodes);
-        graphShortestPath.calculateShortestPath();
+//        graphShortestPath = new GraphShortestPath(graphWithoutIsolatedNodes);
+//        graphShortestPath.calculateShortestPath();
     }
 
+    // Metoda inicjalizująca dane
     @FXML
     private void initialize() {
         numberOfNodesValueLabel.setText(String.valueOf(graphOperation.getNumberOfNodes(graph)));
@@ -67,6 +70,7 @@ public class GeneralStatisticsController {
         adjacencyMatrix.start(new Stage());
     }
 
+    // Wypełnienie listy sąsiedztwa
     private void fillAdjacencyList(){
         Map<String, Set<String>> adjacencyMap = graphOperation.getAdjacencyMap(graphWithoutIsolatedNodes);
         for (Map.Entry<String, Set<String>> row : adjacencyMap.entrySet()) {
@@ -75,6 +79,7 @@ public class GeneralStatisticsController {
         }
     }
 
+    // Ustawienie danych w tabeli
     private void setAdjacencyTableByItems() {
         adjacencyListTableView.setItems(adjacencyList);
     }

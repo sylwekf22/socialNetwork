@@ -7,10 +7,11 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+// Konfiguracja czytająca informacje o pliku databaseconfig.txt
 public class ConfigurationReader {
     private final String fileName;
 
-    // Zwykły konstruktor bezargumentowy
+    // Konstruktor bezargumentowy
     public ConfigurationReader() {
         this.fileName = "databaseconfig.txt";
     }
@@ -20,7 +21,7 @@ public class ConfigurationReader {
         this.fileName = fileName;
     }
 
-    // Zwykły get
+    // Metoda pobierająca nazwę pliku
     public String getFileName() {
         return fileName;
     }

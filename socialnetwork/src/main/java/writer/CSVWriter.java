@@ -7,8 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-// klasa służąca do zapisywania danych do pliku CSV
-
+// Klasa zapisująca dane do pliku CSV
 public class CSVWriter {
 
     private final char separator;
@@ -111,19 +110,24 @@ public class CSVWriter {
 
         int nodeSize = nodes.size();
         Set<String> relatedAdjency;
-
-            for (int i = 0; i < nodeSize; i++){
+        int i = 0;
+            for (String rownode : nodes){
                 relatedAdjency = adjencyList.get(i);
                 writer.write("");
-                for(String node : nodes){
-                if(relatedAdjency.contains(node)) {
+                for(String columnnode : nodes){
+                    if(rownode.equals(columnnode) && relatedAdjency.contains(columnnode)){
+                        writer.append("2 ");
+                    }
+                else if(relatedAdjency.contains(columnnode)) {
                     writer.append("1 ");
                 }
                 else {
                     writer.append("0 ");
                 }
             }
+                i += 1;
                 writer.append("\n");
+
         }
         writer.flush();
         writer.close();

@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.common.graph.MutableValueGraph;
+import com.google.common.graph.ValueGraph;
 import creator.GuavaConnectedComponentsCreator;
 import creator.GuavaGraphCreator;
 import graphoperation.GraphConnectedComponents;
@@ -26,14 +27,16 @@ public class MainController {
     private void initialize() {
     }
 
+    // Otworzenie okna GeneralStatistics
     @FXML
     private void openWindowWithGeneralStatistics(){
         GeneralStatistics generalStatistics = new GeneralStatistics();
         generalStatistics.start(new Stage());
     }
 
+    // Otworzenie okna GeneralStatistics
     @FXML
-    private void openWindowWithFiveYearPeriodStatistics(){
+    private void openWindowWithc(){
         FiveYearPeriodStatistics fiveYearPeriodStatistics = new FiveYearPeriodStatistics();
         fiveYearPeriodStatistics.start(new Stage());
     }

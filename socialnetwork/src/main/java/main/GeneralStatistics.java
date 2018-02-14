@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// Klasa uruchomieniowa okna generalnych wyników
 public class GeneralStatistics extends Application {
 
     @Override

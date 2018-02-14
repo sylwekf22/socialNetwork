@@ -10,6 +10,7 @@ import dao.Title;
 import java.util.LinkedList;
 import java.util.List;
 
+// Klasa obsługująca zapytania z tabeli tytul
 public class TitlesHibernate {
     private final SessionFactory sessionFactory;
 
@@ -20,6 +21,7 @@ public class TitlesHibernate {
                 .buildSessionFactory();
     }
 
+    // Pobierz liczbę tytułów
     public Long countTitles(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -33,6 +35,7 @@ public class TitlesHibernate {
         return nodes;
     }
 
+    // Pobierz listę id tytułów
     public List<Integer> getTitlesId(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -46,6 +49,7 @@ public class TitlesHibernate {
         return titles;
     }
 
+    // Pobierz listę nazw tytułów
     public List<String> getTitlesNames(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -59,6 +63,7 @@ public class TitlesHibernate {
         return titlesNames;
     }
 
+    // Pobierz instancję tytułów
     public Title getTitleInstance(String id){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -74,6 +79,7 @@ public class TitlesHibernate {
         return title;
     }
 
+    // Pobierz tytuł za pomocą id
     public String getTitle(String id){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -89,6 +95,7 @@ public class TitlesHibernate {
         return title;
     }
 
+    // Pobierz tytuły i konwertuj do listy
     public List<String> getTitleAndConvertToList(String id){
         Title title = getTitleInstance(id);
         List<String> listTitle = new LinkedList<>();

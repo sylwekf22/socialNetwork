@@ -1,7 +1,7 @@
 package dto;
 
 
-// Znowu głupia klasa dto
+// Klasa do reprezentacji obiektów z bazy danych tabeli tytul
 
 import java.util.Date;
 

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Klasa odczytująca zapisane spójne skłądowe w pliku CSV
 public class CSVConnectedComponentsReader {
     private String fileName;
 

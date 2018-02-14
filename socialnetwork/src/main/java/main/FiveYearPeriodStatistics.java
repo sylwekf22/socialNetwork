@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// Klasa uruchomieniowa okna wyników co 5 lat
 public class FiveYearPeriodStatistics extends Application {
 
     @Override

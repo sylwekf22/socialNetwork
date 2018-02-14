@@ -7,7 +7,7 @@ import reader.CSVGraphReader;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-// Metoda tworząca z pliku CSV graf za pomocą biblioteki Guava
+// Klasa tworząca graf w kodzie programu na podstawie Biblioteki Guava
 public class GuavaGraphCreator {
 
     private CSVGraphReader csvGraphReader;
@@ -16,7 +16,7 @@ public class GuavaGraphCreator {
         this.csvGraphReader = new CSVGraphReader(fileName);
     }
 
-    // Tworzymy graf danego typu xdddd
+    // Tworzenie grafu
     public MutableValueGraph<String, String> createGraphFromFile(){
         MutableValueGraph<String, String> valueGraph = ValueGraphBuilder.undirected().allowsSelfLoops(true).build();
         Stream<String> csvLines = csvGraphReader.readCSV();
@@ -29,7 +29,7 @@ public class GuavaGraphCreator {
         return valueGraph;
     }
 
-    // dzielimy każdy wiersz na trzy części bo tyle znajduję się informacji w danym wierszu
+    // Dzielenie każdej linii na osobne części
     private String[] splitLine(String line){
         return line.split(",");
     }

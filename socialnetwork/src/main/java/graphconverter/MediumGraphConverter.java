@@ -5,14 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-// tak samo jak BigGraphConverter
-
+// Klasa tworząca graf w postaci List<List<String>>
+// Za pomocą tej klasy stworzyć graf za pomocą biblioteki Guava
 public class MediumGraphConverter extends GraphConverter{
 
     public MediumGraphConverter() {
         super();
     }
 
+    // Konwertuje dane z dazy danych do postaci grafu List<List<String>>
     @Override
     public List<List<String>> convertGraphToList() {
         List<List<String>> graph = new LinkedList<>();
@@ -25,6 +26,7 @@ public class MediumGraphConverter extends GraphConverter{
         return graph;
     }
 
+    // Metoda zapisuje tytuły autorów
     @Override
     protected void saveAuthorsTitles(List<List<String>> graph, Integer author, List<Integer> titles) {
         for (Integer title: titles){
@@ -42,6 +44,7 @@ public class MediumGraphConverter extends GraphConverter{
         }
     }
 
+    // Metoda zapisująca połączenie pomiędzy autorem, tytułem i współautorami
     @Override
     protected void saveConnectionBetweenAuthorTitleAndCoAuthors(List<List<String>> graph,
                                                                 Integer author,

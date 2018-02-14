@@ -2,13 +2,15 @@ package config;
 
 import java.sql.*;
 
+// Klasa DatabaseConnectionHandler
 public class DatabaseConnectionHandler {
-    // Nudy
+    // zmienne określające sslOpiton i timeZoneOption
     private String sslOption = "?useSSL=false";
     private String timeZoneOption = "useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     private final ConfigurationReader configurationReader;
 
+    // Dane konfigurające
     private final String databaseName;
     private final String user;
     private final String password;
@@ -17,8 +19,7 @@ public class DatabaseConnectionHandler {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    // Konstruktor, w którym pobieramy za pomocą słów kluczowych dane na temat użytkownika
-    // hasła i nazwy bazy danych
+    // Konstrutor odczytujący słowa kluczowe z pliku databaseconfig.txt
     public DatabaseConnectionHandler() {
         this.configurationReader = new ConfigurationReader();
 
@@ -33,7 +34,7 @@ public class DatabaseConnectionHandler {
         setUpConnection();
     }
 
-    // W tym konstruktorze podajemy ConfigurationReader do czytania słów kluczowych
+    // Konstruktor odczytujący słowa kluczowe za pomocą klasy ConfigurationReader
     public DatabaseConnectionHandler(ConfigurationReader configurationReader) {
         this.configurationReader = configurationReader;
 
@@ -48,7 +49,7 @@ public class DatabaseConnectionHandler {
         setUpConnection();
     }
 
-    // Metoda do odpytywania bazy danych
+    // Metoda do odczytywania danych bazy danych
     public ResultSet getData(String sqlQuery) throws SQLException {
         this.preparedStatement = connection.prepareStatement(sqlQuery);
         this.resultSet = preparedStatement.executeQuery();

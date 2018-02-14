@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Klasa odczytująca pliki CSV z katalogu resources
 public class CSVReader {
 
     private String fileName;

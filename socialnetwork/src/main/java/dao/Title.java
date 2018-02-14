@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
-// Klasa odpowiadają tabeli tytul z bazy danych
+// Encja odpowiadająca tabeli tytul z bazy danych
 
 @Entity
 @Table(name = "tytul")

@@ -5,18 +5,17 @@ import reader.CSVConnectedComponentsReader;
 import java.util.*;
 import java.util.stream.Stream;
 
-// Klasa służąca do odczytywania spójnych składowych z pliku CSV
+// Klasa tworząca intepretację w kodzie programu listy spójnyh składowych
 public class GuavaConnectedComponentsCreator {
 
     private CSVConnectedComponentsReader csvConnectedComponentsReader;
 
-    // Podajemy reader, który odczytuje pod daną nazwą pliku
+    // Konstruktor do którego podajemy nazwę pliku w celu odczytania spójnych składowych z pliku
     public GuavaConnectedComponentsCreator(String fileName) {
         this.csvConnectedComponentsReader = new CSVConnectedComponentsReader(fileName);
     }
 
-    // Tworzenie mapy spójnych komponentów, w którym klucz to identyfikator/indeks spójnego komponentu
-    // Set to zbiór wierzchołków jakie zawiera dany komponent
+    // Tworzenie spójnych składowych
     public Map<String, Set<String>> createConnectedComponentsMap(){
         Map<String, Set<String>> mapOfConnectedComponents = new HashMap<>();
         Stream<String> csvLines = csvConnectedComponentsReader.readCSV();
@@ -35,12 +34,12 @@ public class GuavaConnectedComponentsCreator {
         return mapOfConnectedComponents;
     }
 
-    // Robi split na danym wierszu w pliku i dzieli na indeks i set
+    // Rozdzielenie linii na index i listę wierzchołków znajdujących się w danej składowej
     private String[] splitLineIntoIndexAndListOfNodes(String line){
         return line.split(",",2);
     }
 
-    // Robi split na każdym stringu oddzielonym przecinkiem
+    // Rozdzielenie każdego elementu w danym Stringu
     private String[] splitNodes(String line) {
         return line.split(",");
     }

@@ -6,7 +6,7 @@ import reader.CSVGraphReader;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-// Klasa do tworzenia grafu za pomocą biblioteki podrzuconej przez maćka xdd
+// Klasa do tworzenia grafu za pomocą biblioteki JGraphT
 public class JGraphTGraphCreator {
 
     private CSVGraphReader csvGraphReader;
@@ -15,7 +15,7 @@ public class JGraphTGraphCreator {
         this.csvGraphReader = new CSVGraphReader(fileName);
     }
 
-    // Tworzymy graf
+    // Tworzenie grafu
     public Multigraph<String, String> createGraphFromFile(){
         Multigraph<String, String> graph = new Multigraph<>(String.class);
         Stream<String> csvLines = csvGraphReader.readCSV();
@@ -36,7 +36,7 @@ public class JGraphTGraphCreator {
         return graph;
     }
 
-    // Zwykły split wiersza
+    // Rozdzielenie elementów znajdujących się w Stringu
     private String[] splitLine(String line){
         return line.split(",");
     }

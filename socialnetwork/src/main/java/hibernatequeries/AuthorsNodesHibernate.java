@@ -10,7 +10,7 @@ import dao.Author;
 import java.util.LinkedList;
 import java.util.List;
 
-// Klasa z zapytaniami za pomocą Hibernate
+// Klasa z zapytaniami do tabeli autorzy z dazy danych
 
 public class AuthorsNodesHibernate {
     private final SessionFactory sessionFactory;
@@ -22,6 +22,7 @@ public class AuthorsNodesHibernate {
                 .buildSessionFactory();
     }
 
+    // Obliczenie liczby autorów
     public Long countAuthors(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -35,6 +36,7 @@ public class AuthorsNodesHibernate {
         return nodes;
     }
 
+    // Pobierz listę id autorów
     public List<Integer> getAuthorsId(){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -48,6 +50,7 @@ public class AuthorsNodesHibernate {
         return authors;
     }
 
+    // Pobierz autora za pomocą id
     public Author getAuthor(String id){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -63,6 +66,7 @@ public class AuthorsNodesHibernate {
         return author;
     }
 
+    // Pobierz imię i nazwisko autora za pomocą id
     public List<String> getFirstNameAndSecondName(String id){
         List<String> initialsList = new LinkedList<>();
 
@@ -82,6 +86,7 @@ public class AuthorsNodesHibernate {
         return initialsList;
     }
 
+    // Konwerter autora
     public List<String> getAuthorAndConvertToList(String id){
         Author author = getAuthor(id);
         List<String> listAuthor = new LinkedList<>();

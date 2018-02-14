@@ -1,7 +1,6 @@
 package graphconverter;
 
-// fabryka, która tworzy instacje danych klas
-
+// Klasa fabryka do tworzenia konwerterów
 public class GraphConverterFactory {
     public GraphConverterFactory() { }
 

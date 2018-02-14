@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// Klasa uruchomieniowa okna macierz sąsiedztwa
 public class AdjacencyMatrix extends Application {
 
     @Override

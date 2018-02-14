@@ -88,7 +88,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="firstAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+                  <Button fx:id="firstAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" onAction="#openFirstAdjacencyMatrix" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
                </children></AnchorPane>
       </content>
     </Tab>

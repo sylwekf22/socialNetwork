@@ -2,7 +2,7 @@ package dto;
 
 import dao.Title;
 
-// Mapper z dao do dto
+// Mapper tabeli tytul z dao do dto
 
 public class TitleMapper {
 

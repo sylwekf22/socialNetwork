@@ -3,7 +3,7 @@ package dto;
 
 import java.util.Date;
 
-// Klasa dto chyba nigdzie nie jest wykorzystywana
+// Klasa do reprezentacji obiektów z bazy danych tabeli autorzy
 
 public class AuthorDto {
 

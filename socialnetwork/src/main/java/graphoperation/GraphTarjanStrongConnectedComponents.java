@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-// Na to nie zwracaj uwagi xddd
-
 public class GraphTarjanStrongConnectedComponents {
     private boolean[] marked;
     private int[] id;

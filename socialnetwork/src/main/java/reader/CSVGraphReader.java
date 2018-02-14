@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Klasa odczytująca zapisany graf w pliku CSV
 public class CSVGraphReader {
 
     private String fileName;
