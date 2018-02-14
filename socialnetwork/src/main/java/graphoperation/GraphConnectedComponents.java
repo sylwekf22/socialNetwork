@@ -146,6 +146,18 @@ public class GraphConnectedComponents {
         return componentNodes;
     }
 
+    public List getTheBiggestConnectedComponentFromMap(Map<String, Set<String>> mapOfConnectedComponents){
+        int max = 0;
+        List<String> componentNodes = new LinkedList<>();
+        for (Map.Entry<String, Set<String>> map : mapOfConnectedComponents.entrySet()) {
+            if (map.getValue().size() > max) {
+                max = map.getValue().size();
+                componentNodes = new LinkedList<>(map.getValue());
+            }
+        }
+        return componentNodes;
+    }
+
     public Map<Integer, List<Integer>> getMapOfIdenticalComponentsLength(){
         Map<Integer, List<Integer>> mapOfComponentsLength = new HashMap<>();
         int theBiggestConnectedComponent = findTheBiggestConnectedComponent();
