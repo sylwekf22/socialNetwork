@@ -132,7 +132,7 @@ public class GraphShortestPath {
         return maxSubGraph.nodes().stream().collect(Collectors.toList());
     }
 
-    private int getGraphDiameter() {
+    public int getGraphDiameter() {
         if (diameter == Integer.MAX_VALUE) {
             try {
                 calculateShortestPath();
@@ -143,7 +143,7 @@ public class GraphShortestPath {
         return diameter;
     }
 
-    private int getGraphRadius() {
+    public int getGraphRadius() {
         if (radius == 0) {
             try {
                 calculateShortestPath();
@@ -154,7 +154,7 @@ public class GraphShortestPath {
         return radius;
     }
 
-    private double getAverageNodeDistance() {
+    public double getAverageNodeDistance() {
         return averageDistance;
     }
 

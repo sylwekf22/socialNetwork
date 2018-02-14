@@ -1,14 +1,516 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.FiveYearPeriodStatisticsController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1195.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FiveYearPeriodStatisticsController">
+  <tabs>
+    <Tab fx:id="firstTab" text="1981-1985">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="firstRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-1985">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="firstSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="firstGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="firstNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="firstNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="firstAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="firstNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="firstNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="firstAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="firstNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="firstRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="firstNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="firstDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="firstAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="firstDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="firstRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="firstAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="firstTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                    <columns>
+                      <TableColumn fx:id="firstNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                      <TableColumn fx:id="firstAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                    </columns>
+                  </TableView>
+                  <Label fx:id="firstAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="firstAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="secondTab" text="1981-1990">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="secondRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-1990">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="secondSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="secondGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="secondNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="secondNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="secondAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="secondNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="secondNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="secondAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="secondNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="secondRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="secondNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="secondDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="secondAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="secondDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="secondRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Label fx:id="secondAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="secondTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                     <columns>
+                        <TableColumn fx:id="secondNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                        <TableColumn fx:id="secondAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="secondAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="secondAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="thirdTab" text="1981-1995">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="thirdRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-1995">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="thirdSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="thirdGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="thirdNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="thirdNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="thirdAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="thirdNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="thirdNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="thirdAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="thirdNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="thirdRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="thirdNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="thirdDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="thirdAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="thirdDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="thirdRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Label fx:id="thirdAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="thirdTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                     <columns>
+                        <TableColumn fx:id="thirdNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                        <TableColumn fx:id="thirdAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="thirdAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="thirdAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="fourthTab" text="1981-2000">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="fourthRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-2000">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fourthSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="fourthGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="fourthNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="fourthNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="fourthAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="fourthNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="fourthNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="fourthAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="fourthNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="fourthRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="fourthNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="fourthDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="fourthAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="fourthDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="fourthRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Label fx:id="fourthAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="fourthTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                     <columns>
+                        <TableColumn fx:id="fourthNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                        <TableColumn fx:id="fourthAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="fourthAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="fourthAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="fifthTab" text="1981-2005">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="fifthRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-2005">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fifthSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="fifthGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="fifthNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="fifthNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="fifthAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="fifthNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="fifthNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="fifthAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="fifthNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="fifthRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="fifthNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="fifthDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="fifthAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="fifthDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="fifthRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Label fx:id="fifthAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="fifthTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                     <columns>
+                        <TableColumn fx:id="fifthNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                        <TableColumn fx:id="fifthAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="fifthAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="fifthAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="sixthTab" text="1981-2010">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="sixthRsdsSocialNetworkLabel" layoutX="14.0" layoutY="14.0" text="RSDS Social Network : 1981-2010">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="sixthSummary" layoutX="14.0" layoutY="67.0" text="Summary">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="sixthGridPane" gridLinesVisible="true" layoutX="14.0" layoutY="103.0" prefHeight="562.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Number of nodes :" wrapText="true" />
+                        <Label text="Number of edges :" GridPane.rowIndex="1" />
+                        <Label text="The average degree of nodes of a graph :" wrapText="true" GridPane.rowIndex="2" />
+                        <Label text="Number of isolated nodes :" wrapText="true" GridPane.rowIndex="3" />
+                        <Label text="Number of nodes of a graph after deletion of isolated nodes (the obtained graph is further called a reduced graph) :" wrapText="true" GridPane.rowIndex="4" />
+                        <Label text="The average degree of nodes of a reduced graph :" wrapText="true" GridPane.rowIndex="5" />
+                        <Label text="Number of components of a graph :" wrapText="true" GridPane.rowIndex="6" />
+                        <Label text="Range of number of nodes in the components of a reduced graph :" wrapText="true" GridPane.rowIndex="7" />
+                        <Label text="Number the greatest component :" wrapText="true" GridPane.rowIndex="8" />
+                        <Label text="The distribution of distances between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="9" />
+                        <Label text="The average distance between the nodes in the greatest component :" wrapText="true" GridPane.rowIndex="10" />
+                        <Label text="The diameter of the greatest component :" wrapText="true" GridPane.rowIndex="11" />
+                        <Label text="The radius of the greatest component :" GridPane.rowIndex="12" />
+                        <Label fx:id="sixthNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                        <Label fx:id="sixthNumberOfEdgesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="sixthAverageDegreeOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="sixthNumberOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="sixthNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="sixthAverageDegreeOfNodesAfterDeletionValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="sixthNumberOfComponentsValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="sixthRangeOfNumberOfNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="sixthNumberTheGreatestComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="sixthDistributionOfDistancesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="sixthAverageDistanceBetweenNodesValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="sixthDiameterOfComonentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="sixthRadiousOfComponentValueLabel" prefWidth="70.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="73.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="1.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="4.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Label fx:id="sixthAdjacencyListLabel" layoutX="615.0" layoutY="71.0" text="Adjacency list">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="sixthTableView" layoutX="326.0" layoutY="102.0" prefHeight="563.0" prefWidth="695.0">
+                     <columns>
+                        <TableColumn fx:id="sixthNodesTableColumn" prefWidth="50.0" text="Nodes" />
+                        <TableColumn fx:id="sixthAdjacencyNodesTableColumn" prefWidth="644.0" text="Adjacency nodes" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="sixthAdjacencyMatrix" layoutX="1040.0" layoutY="71.0" text="Adjacency matrix">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="sixthAdjacencyMatrixButton" layoutX="1040.0" layoutY="102.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" text="Show adjacency matrix" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
