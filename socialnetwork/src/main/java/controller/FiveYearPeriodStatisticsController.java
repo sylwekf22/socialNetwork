@@ -23,20 +23,7 @@ public class FiveYearPeriodStatisticsController {
         setThirdData();
         setFourthData();
         setFifthData();
-
-        sixthGuavaGraphCreator = new GuavaGraphCreator("1981-2010.csv");
-        sixthGraph = sixthGuavaGraphCreator.createGraphFromFile();
-
-        sixthGraphOperation = new GraphOperation();
-        sixthGraphWithoutIsolatedNodes = sixthGraphOperation.removeIsolatedNodes(sixthGraph, "1981-2010.csv");
-
-        sixthGuavaConnectedComponentsCreator = new GuavaConnectedComponentsCreator("1981-2010_graph_without_isolated_nodes_connected_components.csv");
-        sixthConnectedComponentsMap = sixthGuavaConnectedComponentsCreator.createConnectedComponentsMap();
-
-        sixthGraphConnectedComponents = new GraphConnectedComponents();
-
-//        sixthGraphShortestPath = new GraphShortestPath(sixthGraphWithoutIsolatedNodes);
-//        sixthGraphShortestPath.calculateShortestPath();
+        setSixthData();
     }
 
     private void setFirstData() {
@@ -119,6 +106,22 @@ public class FiveYearPeriodStatisticsController {
 //        fifthGraphShortestPath.calculateShortestPath();
     }
 
+    private void setSixthData() {
+        sixthGuavaGraphCreator = new GuavaGraphCreator("1981-2010.csv");
+        sixthGraph = sixthGuavaGraphCreator.createGraphFromFile();
+
+        sixthGraphOperation = new GraphOperation();
+        sixthGraphWithoutIsolatedNodes = sixthGraphOperation.removeIsolatedNodes(sixthGraph, "1981-2010.csv");
+
+        sixthGuavaConnectedComponentsCreator = new GuavaConnectedComponentsCreator("1981-2010_graph_without_isolated_nodes_connected_components.csv");
+        sixthConnectedComponentsMap = sixthGuavaConnectedComponentsCreator.createConnectedComponentsMap();
+
+        sixthGraphConnectedComponents = new GraphConnectedComponents();
+
+//        sixthGraphShortestPath = new GraphShortestPath(sixthGraphWithoutIsolatedNodes);
+//        sixthGraphShortestPath.calculateShortestPath();
+    }
+
     @FXML
     private void initialize(){
         initFirstData();
@@ -126,28 +129,7 @@ public class FiveYearPeriodStatisticsController {
         initThirdData();
         initFourthData();
         initFifthData();
-
-        sixthNumberOfNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfNodes(sixthGraph)));
-        sixthNumberOfEdgesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfEdges(sixthGraph)));
-        sixthAverageDegreeOfNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfAverageDegree(sixthGraph)));
-        sixthNumberOfIsolatedNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getListOfIsolatedNodes(sixthGraph).size()));
-        sixthNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfNodes(sixthGraphWithoutIsolatedNodes)));
-        sixthAverageDegreeOfNodesAfterDeletionValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfAverageDegree(sixthGraphWithoutIsolatedNodes)));
-        sixthNumberOfComponentsValueLabel.setText(String.valueOf(sixthConnectedComponentsMap.size()));
-
-        int theSmallestConnectedComponent = sixthGraphConnectedComponents.findTheSmallestConnectedComponentFromMap(sixthConnectedComponentsMap);
-        int theBiggestConnectedComponent = sixthGraphConnectedComponents.findTheBiggestConnectedComponentFromMap(sixthConnectedComponentsMap);
-
-        sixthRangeOfNumberOfNodesValueLabel.setText(theSmallestConnectedComponent + " - " + theBiggestConnectedComponent);
-
-        sixthNumberTheGreatestComponentValueLabel.
-                setText(String.valueOf(sixthGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, sixthConnectedComponentsMap)));
-
-        fillSixthAdjacencyList();
-        setSixthAdjacencyTableByItems();
-
-        sixthNodesTableColumn.setCellValueFactory(node -> node.getValue().getNodeProperty());
-        sixthAdjacencyNodesTableColumn.setCellValueFactory(adjacencyNode -> adjacencyNode.getValue().getAdjacencyNodesProperty());
+        initSixthData();
     }
 
     private void initFirstData() {
@@ -268,6 +250,30 @@ public class FiveYearPeriodStatisticsController {
 
         fifthNodesTableColumn.setCellValueFactory(node -> node.getValue().getNodeProperty());
         fifthAdjacencyNodesTableColumn.setCellValueFactory(adjacencyNode -> adjacencyNode.getValue().getAdjacencyNodesProperty());
+    }
+
+    private void initSixthData() {
+        sixthNumberOfNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfNodes(sixthGraph)));
+        sixthNumberOfEdgesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfEdges(sixthGraph)));
+        sixthAverageDegreeOfNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfAverageDegree(sixthGraph)));
+        sixthNumberOfIsolatedNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getListOfIsolatedNodes(sixthGraph).size()));
+        sixthNumberOfNodesAfterDeletionOfIsolatedNodesValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfNodes(sixthGraphWithoutIsolatedNodes)));
+        sixthAverageDegreeOfNodesAfterDeletionValueLabel.setText(String.valueOf(sixthGraphOperation.getNumberOfAverageDegree(sixthGraphWithoutIsolatedNodes)));
+        sixthNumberOfComponentsValueLabel.setText(String.valueOf(sixthConnectedComponentsMap.size()));
+
+        int theSmallestConnectedComponent = sixthGraphConnectedComponents.findTheSmallestConnectedComponentFromMap(sixthConnectedComponentsMap);
+        int theBiggestConnectedComponent = sixthGraphConnectedComponents.findTheBiggestConnectedComponentFromMap(sixthConnectedComponentsMap);
+
+        sixthRangeOfNumberOfNodesValueLabel.setText(theSmallestConnectedComponent + " - " + theBiggestConnectedComponent);
+
+        sixthNumberTheGreatestComponentValueLabel.
+                setText(String.valueOf(sixthGraphConnectedComponents.findTheBiggestConnectedComponentsFromMap(theBiggestConnectedComponent, sixthConnectedComponentsMap)));
+
+        fillSixthAdjacencyList();
+        setSixthAdjacencyTableByItems();
+
+        sixthNodesTableColumn.setCellValueFactory(node -> node.getValue().getNodeProperty());
+        sixthAdjacencyNodesTableColumn.setCellValueFactory(adjacencyNode -> adjacencyNode.getValue().getAdjacencyNodesProperty());
     }
 
     private void fillFirstAdjacencyList(){
